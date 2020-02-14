@@ -37,7 +37,7 @@
     "@skyux/core": "3.10.0",
     "@skyux/errors": "3.0.0",
     "@skyux/forms": "3.6.2",
-    "@skyux/http": "3.9.0",
+    "@skyux/http": "^3.9.0",
     "@skyux/i18n": "3.9.0",
     "@skyux/indicators": "3.1.2",
     "@skyux/layout": "3.6.0",

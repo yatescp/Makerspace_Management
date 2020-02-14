@@ -6,9 +6,16 @@ import {
   AppSkyModule
 } from './app-sky.module';
 
+import {
+  SkyAuthHttpModule
+} from '@skyux/http';
+
 @NgModule({
   exports: [
-    AppSkyModule
+    AppSkyModule,
+    SkyAuthHttpModule
   ]
+  
 })
+
 export class AppExtrasModule { }

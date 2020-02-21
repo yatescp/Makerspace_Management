@@ -6,28 +6,29 @@
     <sky-row>
       <sky-column>
         <h1>
-          {{ 'home_title' | skyAppResources }}
+          {{ 'schedule_title' | skyAppResources }}
         </h1>
+        <sky-row>
+          <p>
+            <a
+              class="sky-btn sky-btn-primary"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Reserve station
+            </a>
+          </p>
 
-        <p>
-          Welcome to the SKY UX template. This template is dynamically cloned anytime `skyux new` is run.
-          For more information about SKY UX, visit the README.
-        </p>
-
-        <sky-alert alertType="info">
-          You've just taken your first step into a larger world.
-        </sky-alert>
-
-        <p>
-          <a
-            class="sky-btn sky-btn-primary"
-            href="https://developer.blackbaud.com/skyux"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Learn more about SKY UX
-          </a>
-        </p>
+          <p>
+            <a
+              class="sky-btn sky-btn"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Today
+            </a>
+          </p>
+        </sky-row>
       </sky-column>
     </sky-row>
   </sky-fluid-grid>

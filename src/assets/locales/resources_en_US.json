@@ -14,5 +14,9 @@
   "home_title": {
     "message": "SKY UX Template",
     "_description": "Title for the home component"
+  },
+  "schedule_title": {
+    "message": "Makerspace schedule",
+    "_description": "Title for the Makerspace schedule page"
   }
 }

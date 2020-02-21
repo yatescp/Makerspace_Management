@@ -2,13 +2,9 @@
 </app-nav>
 
 <main>
-  <sky-fluid-grid>
-    <sky-row>
-      <sky-column>
         <h1>
           {{ 'schedule_title' | skyAppResources }}
         </h1>
-        <sky-row>
           <p>
             <a
               class="sky-btn sky-btn-primary"
@@ -28,8 +24,17 @@
               Today
             </a>
           </p>
-        </sky-row>
-      </sky-column>
-    </sky-row>
-  </sky-fluid-grid>
+          <p>
+            <sky-datepicker>
+              <input
+                skyDatepickerInput
+                [dateFormat]="dateFormat"
+                [disabled]="disabled"
+                [maxDate]="maxDate"
+                [minDate]="minDate"
+                [(ngModel)]="selectedDate"
+                #date="ngModel"
+              />
+            </sky-datepicker>
+          </p>
 </main>

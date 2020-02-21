@@ -19,13 +19,23 @@ import {
   SkyNavbarModule
 } from '@skyux/navbar';
 
+import {
+  SkyDatepickerModule
+} from '@skyux/datetime';
+
+import {
+  SkyPopoverModule
+} from '@skyux/popovers'
+
 @NgModule({
   exports: [
     SkyAvatarModule,
     SkyAlertModule,
     SkyKeyInfoModule,
     SkyFluidGridModule,
-    SkyNavbarModule
+    SkyNavbarModule,
+    SkyDatepickerModule,
+    SkyPopoverModule
   ]
 })
 export class AppSkyModule { }

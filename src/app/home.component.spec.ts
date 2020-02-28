@@ -15,6 +15,10 @@ import {
   HomeComponent
 } from './home.component';
 
+import { 
+  AppExtrasModule 
+} from './app-extras.module';
+
 describe('Home component', () => {
 
   /**
@@ -26,7 +30,8 @@ describe('Home component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        SkyAppTestModule
+        SkyAppTestModule,
+        AppExtrasModule
       ]
     });
   });

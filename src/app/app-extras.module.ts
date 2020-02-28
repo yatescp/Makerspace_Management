@@ -11,11 +11,13 @@ import {
 } from '@skyux/http';
 
 import { 
-  BrowserAnimationsModule 
+  BrowserAnimationsModule
 } from '@angular/platform-browser/animations';
 
 import { 
-  CalendarModule, DateAdapter 
+  CalendarModule, 
+  DateAdapter, 
+  CalendarDayModule 
 } from 'angular-calendar';
 
 import { 
@@ -29,13 +31,11 @@ import {
       provide: DateAdapter,
       useFactory: adapterFactory
     })
-  ]
-})
-
-@NgModule({
+  ],
   exports: [
     AppSkyModule,
-    SkyAuthHttpModule
+    SkyAuthHttpModule,
+    CalendarDayModule
   ]
   
 })

@@ -5,47 +5,50 @@
   <h1>
     {{ 'schedule_title' | skyAppResources }}
   </h1>
-    <p>
-      <a
-        class="sky-btn sky-btn-primary"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Reserve station
-      </a>
-    </p>
+  <p>
+    <a class="sky-btn sky-btn-primary"
+      rel="noopener noreferrer"
+      target="_blank">
+      Reserve station
+    </a>
+  </p>
 
-    <p>
-      <a
-        class="sky-btn sky-btn"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Today
-      </a>
-    </p>
-    <p>
-      <sky-datepicker>
-        <input
-          skyDatepickerInput
-          [dateFormat]="dateFormat"
-          [disabled]="disabled"
-          [maxDate]="maxDate"
-          [minDate]="minDate"
-          [(ngModel)]="selectedDate"
-          #date="ngModel"
-        />
-      </sky-datepicker>
-    </p>
-    <div>
-      <mwl-calendar-day-view
-        [viewDate]="viewDate"
-        [events]="events"
-        [refresh]="refresh"
-        (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventTimesChanged($event)"
-      >
+  <p>
+    <a class="sky-btn sky-btn"
+      rel="noopener noreferrer"
+      target="_blank">
+      Today
+    </a>
+  </p>
+  <p>
+    <sky-datepicker>
+      <input skyDatepickerInput
+        [dateFormat]="dateFormat"
+        [disabled]="disabled"
+        [maxDate]="maxDate"
+        [minDate]="minDate"
+        [(ngModel)]="selectedDate"
+        #date="ngModel" />
+    </sky-datepicker>
+  </p>
+  <!-- <div>
+    <mwl-calendar-day-view [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)">
       jhghjkuyfghkf
-      </mwl-calendar-day-view>
-    </div>
+    </mwl-calendar-day-view>
+  </div> -->
+
+  <link href="https://unpkg.com/bootstrap-css-only@4.3.1/css/bootstrap.min.css"
+    rel="stylesheet">
+  <link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.css"
+    rel="stylesheet">
+  <link href="https://unpkg.com/angular-calendar@0.28.1/css/angular-calendar.css"
+    rel="stylesheet">
+  <link href="https://unpkg.com/flatpickr@4.6.3/dist/flatpickr.css"
+    rel="stylesheet">
+  <mwl-demo-component></mwl-demo-component>
+
 </main>

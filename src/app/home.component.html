@@ -2,29 +2,26 @@
 </app-nav>
 
 <main>
+
   <h1>
     {{ 'schedule_title' | skyAppResources }}
   </h1>
-    <p>
-      <a
+  <div class="row" style="margin-top: 15px;  padding: 15px;">
+    <div class="col-md-6">
+      <button
         class="sky-btn sky-btn-primary"
         rel="noopener noreferrer"
         target="_blank"
       >
         Reserve station
-      </a>
-    </p>
-
-    <p>
-      <a
+      </button>
+      <button
         class="sky-btn sky-btn"
         rel="noopener noreferrer"
         target="_blank"
       >
         Today
-      </a>
-    </p>
-    <p>
+      </button>
       <sky-datepicker>
         <input
           skyDatepickerInput
@@ -36,16 +33,6 @@
           #date="ngModel"
         />
       </sky-datepicker>
-    </p>
-    <div>
-      <mwl-calendar-day-view
-        [viewDate]="viewDate"
-        [events]="events"
-        [refresh]="refresh"
-        (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventTimesChanged($event)"
-      >
-      jhghjkuyfghkf
-      </mwl-calendar-day-view>
     </div>
+  </div>
 </main>

@@ -25,7 +25,11 @@ import {
 
 import {
   SkyPopoverModule
-} from '@skyux/popovers'
+} from '@skyux/popovers';
+
+import {
+  SkyModalModule
+} from '@skyux/modals'
 
 @NgModule({
   exports: [
@@ -35,7 +39,8 @@ import {
     SkyFluidGridModule,
     SkyNavbarModule,
     SkyDatepickerModule,
-    SkyPopoverModule
+    SkyPopoverModule,
+    SkyModalModule
   ]
 })
 export class AppSkyModule { }

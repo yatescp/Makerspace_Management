@@ -25,9 +25,11 @@ import {
 
 import {
   SkyPopoverModule
-} from '@skyux/popovers'
+} from '@skyux/popovers';
+import { MakerspaceCalendarComponent } from './calendar/makerspace-calendar.component';
 
 @NgModule({
+  declarations: [MakerspaceCalendarComponent],
   exports: [
     SkyAvatarModule,
     SkyAlertModule,
@@ -35,7 +37,8 @@ import {
     SkyFluidGridModule,
     SkyNavbarModule,
     SkyDatepickerModule,
-    SkyPopoverModule
+    SkyPopoverModule,
+    MakerspaceCalendarComponent
   ]
 })
 export class AppSkyModule { }

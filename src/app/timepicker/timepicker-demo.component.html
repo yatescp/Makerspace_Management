@@ -1,0 +1,89 @@
+
+<h2
+  class="sky-section-heading"
+>
+  Reactive form timepicker
+</h2>
+
+<form
+  novalidate
+  style="max-width: 400px"
+  [formGroup]="startTimeForm"
+>
+  <sky-timepicker
+    #startTimePicker
+  >
+    <input
+      formControlName="time"
+      type="text"
+      [timeFormat]="format12"
+      [skyTimepickerInput]="startTimePicker"
+    />
+  </sky-timepicker>
+
+  <p *ngIf="startTimeForm.errors && (startTimeForm.dirty || startTimeForm.touched)"
+    class="sky-error-label"
+  >
+    <span [hidden]="reactiveForm.errors && !reactiveForm.errors.time.invalid">
+      Enter a valid time.
+    </span>
+
+    <span *ngIf="startTimeForm.errors.required">
+      Time is required. Select a value.
+    </span>
+
+    <span *ngIf="startTimeForm.errors.skyTime">
+      The time is invalid. Enter a valid time or use the picker.
+    </span>
+  </p>
+</form>
+
+<p>
+  Reactive form selected time is {{ startTimeForm.value ? startTimeForm.value.local : '' }}
+</p>
+<form
+  novalidate
+  style="max-width: 400px"
+  [formGroup]="endTimeForm"
+>
+  <sky-timepicker
+    #endTimePicker
+  >
+    <input
+      formControlName="time"
+      type="text"
+      [timeFormat]="format12"
+      [skyTimepickerInput]="endTimeForm"
+    />
+  </sky-timepicker>
+
+  <p *ngIf="endTimeForm.errors && (endTimeForm.dirty || endTimeForm.touched)"
+    class="sky-error-label"
+  >
+    <span [hidden]="endTimeForm.errors && !endTimeForm.errors.time.invalid">
+      Enter a valid time.
+    </span>
+
+    <span *ngIf="endTimeForm.errors.required">
+      Time is required. Select a value.
+    </span>
+
+    <span *ngIf="endTimeForm.errors.skyTime">
+      The time is invalid. Enter a valid time or use the picker.
+    </span>
+  </p>
+</form>
+
+<p>
+  Reactive form selected time is {{ startTimeForm.value ? startTimeForm.value.local : '' }}
+</p>
+
+<p>
+  <button
+    class="sky-btn sky-btn-secondary"
+    type="button"
+    (click)="clearSelectedTimes()"
+  >
+    Clear selection
+  </button>
+</p>

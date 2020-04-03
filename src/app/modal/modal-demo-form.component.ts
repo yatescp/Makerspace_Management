@@ -9,7 +9,7 @@ import { SkyModalDemoContext } from './modal-demo-context';
   templateUrl: './modal-demo-form.component.html'
 })
 export class SkyModalDemoFormComponent {
-  public title = 'Modal demo form';
+  public title = 'Reserve a Station';
 
   constructor(public context: SkyModalDemoContext, public instance: SkyModalInstance) { }
 }

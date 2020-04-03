@@ -20,16 +20,18 @@ import {
 } from '@skyux/navbar';
 
 import {
-  SkyDatepickerModule
+  SkyDatepickerModule,
+  SkyTimepickerModule
 } from '@skyux/datetime';
 
 import {
-  SkyPopoverModule
+  SkyPopoverModule,
 } from '@skyux/popovers';
 
 import {
   SkyModalModule
-} from '@skyux/modals'
+} from '@skyux/modals';
+
 
 @NgModule({
   exports: [
@@ -40,7 +42,8 @@ import {
     SkyNavbarModule,
     SkyDatepickerModule,
     SkyPopoverModule,
-    SkyModalModule
+    SkyModalModule,
+    SkyTimepickerModule
   ]
 })
 export class AppSkyModule { }

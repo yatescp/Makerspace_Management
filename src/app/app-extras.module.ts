@@ -10,20 +10,19 @@ import {
   SkyAuthHttpModule
 } from '@skyux/http';
 
-import { 
-  SkyModalDemoFormComponent 
-} from './modal/modal-demo-form.component';
+import {
+  SkyModalFormComponent
+} from './modal/modal-form.component';
 
 @NgModule({
   providers: [],
   entryComponents: [
-    SkyModalDemoFormComponent
+    SkyModalFormComponent,
   ],
   exports: [
     AppSkyModule,
     SkyAuthHttpModule
   ]
-  
 })
 
 export class AppExtrasModule { }

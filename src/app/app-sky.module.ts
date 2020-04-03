@@ -12,7 +12,7 @@ import {
 } from '@skyux/indicators';
 
 import {
-  SkyFluidGridModule
+  SkyFluidGridModule, SkyToolbarModule
 } from '@skyux/layout';
 
 import {
@@ -33,16 +33,32 @@ import {
 } from '@skyux/modals';
 
 
+import {
+  SkyModalModule, SkyConfirmModule
+} from '@skyux/modals'
+
+import { 
+  SkyCheckboxModule 
+} from '@skyux/forms';
+
+import {
+  SkyGridModule
+} from '@skyux/grids'
+
 @NgModule({
   exports: [
     SkyAvatarModule,
     SkyAlertModule,
     SkyKeyInfoModule,
     SkyFluidGridModule,
+    SkyToolbarModule,
     SkyNavbarModule,
     SkyDatepickerModule,
     SkyPopoverModule,
     SkyModalModule,
+    SkyConfirmModule,
+    SkyCheckboxModule,
+    SkyGridModule,
     SkyTimepickerModule
   ]
 })

@@ -1,34 +1,13 @@
-import {
-  NgModule
-} from '@angular/core';
-
-import {
-  AppSkyModule
-} from './app-sky.module';
-
-import {
-  SkyAuthHttpModule
-} from '@skyux/http';
-
-import {
-  BrowserAnimationsModule
-} from '@angular/platform-browser/animations';
-
-import {
-  SkyModalFormComponent
-} from './modal/modal-form.component';
-
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { MakerspaceCalendarComponent } from './makerspace-calendar.component';
 @NgModule({
   imports: [
-    SkyModalFormComponent,
-    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     NgbModalModule,
@@ -38,12 +17,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
       useFactory: adapterFactory
     })
   ],
-  exports: [
-    AppSkyModule,
-    SkyAuthHttpModule
-  ], providers: [
-  ]
-
+  declarations: [MakerspaceCalendarComponent],
+  exports: [MakerspaceCalendarComponent]
 })
-
-export class AppExtrasModule { }
+export class DemoModule { }

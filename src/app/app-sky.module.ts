@@ -20,12 +20,18 @@ import {
 } from '@skyux/navbar';
 
 import {
-  SkyDatepickerModule
+  SkyDatepickerModule,
+  SkyTimepickerModule
 } from '@skyux/datetime';
 
 import {
-  SkyPopoverModule
-} from '@skyux/popovers'
+  SkyPopoverModule,
+} from '@skyux/popovers';
+
+import {
+  SkyModalModule
+} from '@skyux/modals';
+
 
 import {
   SkyModalModule, SkyConfirmModule
@@ -52,7 +58,8 @@ import {
     SkyModalModule,
     SkyConfirmModule,
     SkyCheckboxModule,
-    SkyGridModule
+    SkyGridModule,
+    SkyTimepickerModule
   ]
 })
 export class AppSkyModule { }

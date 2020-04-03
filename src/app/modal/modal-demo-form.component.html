@@ -3,10 +3,49 @@
       {{title}}
     </sky-modal-header>
     <sky-modal-content>
-      <label>
-        Field 1:
-        <input type="text" [(ngModel)]="context.value1">
-      </label>
+      <div>
+        <label>
+          Station: 
+        </label>
+        <select id="Stations" required>
+          <option value="1">Station 1</option>
+          <option value="2">Station 2</option>
+          <option value="3">Station 3</option>
+          <option value="4">Station 4</option>
+        </select>
+      </div>
+      <div>
+        <label>Date</label>
+        <sky-datepicker>
+          <input
+            skyDatepickerInput
+            [dateFormat]="dateFormat"
+            [disabled]="disabled"
+            [maxDate]="maxDate"
+            [minDate]="minDate"
+            [(ngModel)]="selectedDate"
+            #date="ngModel"
+          />
+        </sky-datepicker>
+      </div>
+      <div>
+        <label>Start Time:</label>
+        <sky-timepicker>
+          <input 
+          skytimepickerInput
+          type="text"    
+          />
+        </sky-timepicker>
+      </div>
+      <div>
+        <label>End Time:</label>
+        <sky-timepicker>
+          <input 
+          skytimepickerInput
+          type="text"    
+          />
+        </sky-timepicker>
+      </div>
     </sky-modal-content>
     <sky-modal-footer>
       <button type="button" class="sky-btn sky-btn-primary" (click)="instance.save('Something cool')">

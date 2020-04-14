@@ -25,14 +25,29 @@
     <div>
       <label>Start Time:</label>
       <sky-timepicker #startTimePicker>
-        <input  type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker" />
+        <input type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker" />
       </sky-timepicker>
     </div>
-    <div>
-      <label>End Time:</label>
-      <sky-timepicker #endTimePicker>
-        <input  type="text" [timeFormat]="format12" [skyTimepickerInput]="endTimePicker" />
-      </sky-timepicker>
+    <div [formGroup]="endTimeForm">
+      <form novalidate style="max-width: 400px" >
+        <label>End Time:</label>
+        <sky-timepicker #endTimePicker>
+          <input type="text" [timeFormat]="format12" [skyTimepickerInput]="endTimePicker" />
+        </sky-timepicker>
+        <p *ngIf="endTimeForm.errors && (endTimeForm.dirty || endTimeForm.touched)" class="sky-error-label">
+          <span [hidden]="endTimeForm.errors && !endTimeForm.errors.time.invalid">
+            Enter a valid time.
+          </span>
+
+          <span *ngIf="endTimeForm.errors.required">
+            Time is required. Select a value.
+          </span>
+
+          <span *ngIf="endTimeForm.errors.skyTime">
+            The time is invalid. Enter a valid time or use the picker.
+          </span>
+        </p>
+      </form>
     </div>
   </sky-modal-content>
   <sky-modal-footer>

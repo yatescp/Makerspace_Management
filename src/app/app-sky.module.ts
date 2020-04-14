@@ -25,25 +25,20 @@ import {
 } from '@skyux/datetime';
 
 import {
-  SkyPopoverModule,
+  SkyPopoverModule
 } from '@skyux/popovers';
 
 import {
-  SkyModalModule
+  SkyModalModule, SkyConfirmModule
 } from '@skyux/modals';
 
-
 import {
-  SkyModalModule, SkyConfirmModule
-} from '@skyux/modals'
-
-import { 
-  SkyCheckboxModule 
+  SkyCheckboxModule
 } from '@skyux/forms';
 
 import {
   SkyGridModule
-} from '@skyux/grids'
+} from '@skyux/grids';
 
 @NgModule({
   exports: [

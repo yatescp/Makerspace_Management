@@ -6,29 +6,12 @@
   <h1>
     {{ 'schedule_title' | skyAppResources }}
   </h1>
-  <div class="row" style="margin-top: 15px;  padding: 15px;">
-    <div class="col-md-6">
-      <sky-modal-launcher>
-        Reserve station
-      </sky-modal-launcher>
-      <button class="sky-btn sky-btn" rel="noopener noreferrer" target="_blank">
-        Today
-      </button>
-
-      <sky-datepicker>
-        <input skyDatepickerInput [dateFormat]="dateFormat" [disabled]="disabled" [maxDate]="maxDate"
-          [minDate]="minDate" [(ngModel)]="selectedDate" #date="ngModel" />
-      </sky-datepicker>
-    </div>
-  </div>
-</main>
+<main>
       <sky-toolbar>
         <sky-toolbar-item>
-          <button 
-          class="sky-btn sky-btn-primary"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Reserve station</button>
+          <sky-modal-launcher>
+            Reserve station
+          </sky-modal-launcher>
         </sky-toolbar-item>
         <sky-toolbar-item>
           <button 

@@ -38,6 +38,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
       useFactory: adapterFactory
     })
   ],
+  entryComponents: [
+    SkyModalFormComponent
+  ],
   exports: [
     AppSkyModule,
     SkyAuthHttpModule

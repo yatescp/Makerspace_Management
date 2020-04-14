@@ -3,33 +3,46 @@
     {{title}}
   </sky-modal-header>
   <sky-modal-content>
-    <div>
-      <label>
-        Station:
-      </label>
-      <select id="Stations" required>
-        <option value="1">Station 1</option>
-        <option value="2">Station 2</option>
-        <option value="3">Station 3</option>
-        <option value="4">Station 4</option>
-        <option value="5">Station 5</option>
-      </select>
-    </div>
-    <div>
-      <label>Date</label>
-      <sky-datepicker>
-        <input skyDatepickerInput [dateFormat]="dateFormat" [disabled]="disabled" [maxDate]="maxDate"
-          [minDate]="minDate" [(ngModel)]="selectedDate" #date="ngModel" />
-      </sky-datepicker>
-    </div>
-    <div>
-      <label>Start Time:</label>
-      <sky-timepicker #startTimePicker>
-        <input type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker" />
-      </sky-timepicker>
-    </div>
-    <div [formGroup]="endTimeForm">
-      <form novalidate style="max-width: 400px" >
+    <form novalidate style="max-width: 400px">
+      <div>
+        <label>
+          Station:
+        </label>
+        <select id="Stations" required>
+          <option value="1">Laser Cutter</option>
+          <option value="2">Creator Pro-3D printer 1</option>
+          <option value="3">Creator Pro-3D printer 2</option>
+          <option value="4">Soldering</option>
+          <option value="5">Drill Press</option>
+          <option value="6">VR/AR</option>
+        </select>
+      </div>
+      <div>
+        <label>Date</label>
+        <sky-datepicker>
+          <input skyDatepickerInput />
+        </sky-datepicker>
+      </div>
+      <div [formGroup]="startTimeForm">
+        <label>Start Time:</label>
+        <sky-timepicker #startTimePicker>
+          <input type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker" />
+        </sky-timepicker>
+        <p *ngIf="endTimeForm.errors && (endTimeForm.dirty || endTimeForm.touched)" class="sky-error-label">
+          <span [hidden]="endTimeForm.errors && !endTimeForm.errors.time.invalid">
+            Enter a valid time.
+          </span>
+
+          <span *ngIf="endTimeForm.errors.required">
+            Time is required. Select a value.
+          </span>
+
+          <span *ngIf="endTimeForm.errors.skyTime">
+            The time is invalid. Enter a valid time or use the picker.
+          </span>
+        </p>
+      </div>
+      <div [formGroup]="endTimeForm">
         <label>End Time:</label>
         <sky-timepicker #endTimePicker>
           <input type="text" [timeFormat]="format12" [skyTimepickerInput]="endTimePicker" />
@@ -47,8 +60,8 @@
             The time is invalid. Enter a valid time or use the picker.
           </span>
         </p>
-      </form>
-    </div>
+      </div>
+    </form>
   </sky-modal-content>
   <sky-modal-footer>
     <button type="button" class="sky-btn sky-btn-primary" (click)="instance.save('Complete')">

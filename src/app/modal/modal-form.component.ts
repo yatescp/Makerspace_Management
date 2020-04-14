@@ -10,7 +10,6 @@ import {
   Validators
 } from '@angular/forms';
 
-
 import { SkyModalInstance } from '@skyux/modals';
 
 import { SkyModalContext } from './modal-context';
@@ -31,7 +30,6 @@ export class SkyModalFormComponent implements OnInit {
     return this.endTimeForm.get('time') as FormControl;
   }
   constructor(public context: SkyModalContext, public instance: SkyModalInstance, private formBuilder: FormBuilder) { }
-
   public ngOnInit(): void {
     this.startTimeForm = this.formBuilder.group({
       time: new FormControl('2:45', Validators.required)

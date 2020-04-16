@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     { id: '3', station: 'Creator Pro - 3D printer 2'} ,
     { id: '4', station: 'Soldering' },
     { id: '5', station: 'Drill press' },
-    { id: '6', station: 'VR/AR' },
+    { id: '6', station: 'VR/AR' }
   ];
 
   public dataForMultiselect = this.data.slice(0);

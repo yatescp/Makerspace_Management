@@ -14,10 +14,6 @@ import {
   BrowserAnimationsModule
 } from '@angular/platform-browser/animations';
 
-import {
-  SkyModalFormComponent
-} from './modal/modal-form.component';
-
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -27,7 +23,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
-    SkyModalFormComponent,
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
@@ -37,6 +32,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
       provide: DateAdapter,
       useFactory: adapterFactory
     })
+  ],
+  entryComponents: [
   ],
   exports: [
     AppSkyModule,

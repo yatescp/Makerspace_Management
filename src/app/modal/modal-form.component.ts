@@ -27,7 +27,7 @@ export class SkyModalFormComponent implements OnInit {
   public dateFormat = 'MM/DD/YYYY';
   public maxDate: Date;
   public minDate: Date;
-  public selectedDate = '04/18/2020';
+  public selectedDate = '04/17/2020';
 
   public get startTime(): FormControl {
     return this.startTimeForm.get('time') as FormControl;

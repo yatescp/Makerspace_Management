@@ -38,7 +38,6 @@ export class SkyModalFormComponent implements OnInit {
   public get reactiveDate(): FormControl {
     return this.reactiveForm.get('selectedDate') as FormControl;
   }
-
   constructor(public context: SkyModalContext, public instance: SkyModalInstance, private formBuilder: FormBuilder) { }
   public ngOnInit(): void {
     this.startTimeForm = this.formBuilder.group({

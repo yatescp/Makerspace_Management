@@ -27,7 +27,7 @@ export class SkyModalFormComponent implements OnInit {
   public dateFormat = 'MM/DD/YYYY';
   public maxDate: Date;
   public minDate: Date;
-  public selectedDate = '';
+  public selectedDate = '04/18/2020';
 
   public get startTime(): FormControl {
     return this.startTimeForm.get('time') as FormControl;
@@ -48,7 +48,7 @@ export class SkyModalFormComponent implements OnInit {
       time: new FormControl('', Validators.required)
     });
     this.reactiveForm = this.formBuilder.group({
-      selectedDate: new FormControl('4/4/2017', Validators.required)
+      selectedDate: new FormControl(this.selectedDate, Validators.required)
     });
   }
   public formatDateForDisplay(date: Date): string {

@@ -45,21 +45,15 @@
     class="toolbar">
       <sky-toolbar>
         <sky-toolbar-item>
-          <button 
-          class="sky-btn sky-btn-primary"
-          rel="noopener noreferrer"
-          target="_blank"
-          >left arrow here</button>
+          <sky-paging
+          pageSize="2"
+          maxPages="3"
+          [(currentPage)]="currentPage"
+          itemCount="8">
+          </sky-paging> 
         </sky-toolbar-item>
         <sky-toolbar-item>
-          <button 
-          class="sky-btn sky-btn"
-          rel="noopener noreferrer"
-          target="_blank"
-          >right arrow here</button>
-        </sky-toolbar-item>
-        <sky-toolbar-item>
-          Date Goes Here
+          {{currentPage}}
         </sky-toolbar-item>
       </sky-toolbar>
       </div>

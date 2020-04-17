@@ -27,6 +27,8 @@ import {
 })
 export class HomeComponent implements OnInit {
 
+  public currentPage = Date();
+
   public data = [
     { id: '0', station: '' },
     { id: '1', station: 'Laser cutter' },

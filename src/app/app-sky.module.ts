@@ -40,6 +40,10 @@ import {
   SkyGridModule
 } from '@skyux/grids';
 
+import {
+  SkyPagingModule
+} from '@skyux/lists';
+
 @NgModule({
   exports: [
     SkyAvatarModule,
@@ -54,7 +58,8 @@ import {
     SkyConfirmModule,
     SkyCheckboxModule,
     SkyGridModule,
-    SkyTimepickerModule
+    SkyTimepickerModule,
+    SkyPagingModule
   ]
 })
 export class AppSkyModule { }

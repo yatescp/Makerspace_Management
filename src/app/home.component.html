@@ -33,8 +33,7 @@
       class="button2">
       <a
         class="sky-btn sky-btn"
-        rel="noopener noreferrer"
-        target="_blank"
+        (click)="today($event)"
       >
         Today
       </a>
@@ -45,15 +44,18 @@
     class="toolbar">
       <sky-toolbar>
         <sky-toolbar-item>
-          <sky-paging
-          pageSize="2"
-          maxPages="3"
-          [(currentPage)]="currentPage"
-          itemCount="8">
-          </sky-paging> 
+          <button type="button" 
+          class="sky-btn sky-btn-default" (click)="goBack($event)">
+          <sky-icon icon="caret-left" size="2x"></sky-icon>
+          </button>
         </sky-toolbar-item>
         <sky-toolbar-item>
-          {{currentPage}}
+          <button type="button" 
+          class="sky-btn sky-btn-default" (click)="goForward($event)">
+          <sky-icon icon="caret-right" size="2x"></sky-icon></button>
+        </sky-toolbar-item>
+        <sky-toolbar-item>
+          {{ theDate | date:'fullDate' }}
         </sky-toolbar-item>
       </sky-toolbar>
       </div>

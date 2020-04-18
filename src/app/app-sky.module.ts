@@ -8,7 +8,8 @@ import {
 
 import {
   SkyAlertModule,
-  SkyKeyInfoModule
+  SkyKeyInfoModule,
+  SkyIconModule
 } from '@skyux/indicators';
 
 import {
@@ -44,7 +45,12 @@ import {
   SkyPagingModule
 } from '@skyux/lists';
 
+import {
+  DatePipe
+} from '@angular/common';
+
 @NgModule({
+  providers: [DatePipe],
   exports: [
     SkyAvatarModule,
     SkyAlertModule,
@@ -59,7 +65,8 @@ import {
     SkyCheckboxModule,
     SkyGridModule,
     SkyTimepickerModule,
-    SkyPagingModule
+    SkyPagingModule,
+    SkyIconModule
   ]
 })
 export class AppSkyModule { }

@@ -4,6 +4,10 @@ import {
 } from '@angular/core';
 
 import {
+  DatePipe
+} from '@angular/common';
+
+import {
   SkyGridMessage,
   SkyGridSelectedRowsModelChange
 } from '@skyux/grids';
@@ -23,11 +27,16 @@ import {
 @Component({
   selector: 'my-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home-component.scss']
+  styleUrls: ['./home-component.scss'],
+  providers: [DatePipe]
 })
 export class HomeComponent implements OnInit {
 
-  public currentPage = Date();
+  public date = new Date();
+  public month = this.date.getMonth();
+  public number = this.date.getDate();
+  public year = this.date.getFullYear();
+  public theDate = new Date(this.year, this.month, this.number);
 
   public data = [
     { id: '0', station: '' },
@@ -46,6 +55,18 @@ export class HomeComponent implements OnInit {
   public selectedRows: string;
 
   public gridController = new Subject<SkyGridMessage>();
+
+  public goBack(event: any): void {
+    this.theDate = new Date(this.year, this.month, this.number - 1);
+  }
+
+  public goForward(event: any): void {
+    this.theDate = new Date(this.year, this.month, this.number + 1);
+}
+
+  public today(event: any): void {
+    this.theDate = new Date(this.year, this.month, this.number);
+  }
 
   public ngOnInit() {
     // Simulate async request:

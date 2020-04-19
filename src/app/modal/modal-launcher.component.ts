@@ -18,10 +18,10 @@ export class SkyModalComponent {
     context.value1 = 'Default text';
 
     let modalInstance = this.modal.open(SkyModalFormComponent, {
+
       providers: [
         {
-          provide: SkyModalContext, useValue: context
-        }
+          provide: SkyModalContext, useValue: context}
       ]
     });
 

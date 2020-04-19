@@ -26,6 +26,9 @@ export class SkyModalFormComponent implements OnInit {
   public endTimeForm: FormGroup;
   public reactiveForm: FormGroup;
   public dateFormat = 'MM/DD/YYYY';
+  public selectedStart: any;
+  public selectedEnd: any;
+  public selectedStation: any;
   public date = this.context.date;
   public todayDate = new moment(this.date);
   public timeNow = this.todayDate.format('HH:mm');
@@ -63,8 +66,12 @@ export class SkyModalFormComponent implements OnInit {
   public clearSelectedTimes() {
     this.startTime.setValue(undefined);
     this.endTime.setValue(undefined);
+    this.selectedEnd = undefined;
+    this.selectedEnd = undefined;
   }
   public save() {
-    
+    let entry: any = ['name: GOAT', this.selectedStation, this.date, this.selectedStart, this.selectedEnd];
+    this.context.bookings.append(entry);
+    this.instance.close('saved');
   }
 }

@@ -40,7 +40,7 @@
       <div [formGroup]="startTimeForm">
         <label>Start Time:</label>
         <sky-timepicker #startTimePicker>
-          <input formControlName="time" type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker" [(ngModel)]="selectedTime" />
+          <input formControlName="time" type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker"  />
         </sky-timepicker>
         <p *ngIf="startTime.errors && (startTime.dirty || startTime.touched)" class="sky-error-label">
           <!--<span [hidden]="startTime.errors && !startTime.errors.time.invalid">
@@ -78,7 +78,7 @@
     </form>
   </sky-modal-content>
   <sky-modal-footer>
-    <button type="button" class="sky-btn sky-btn-primary" (click)="save()">
+    <button type="button" class="sky-btn sky-btn-primary" (click)="instance.save()">
       Save
     </button>
     <button type="button" class="sky-btn" (click)="instance.save('Cancel')">

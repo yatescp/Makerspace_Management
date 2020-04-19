@@ -25,14 +25,12 @@ export class SkyModalFormComponent implements OnInit {
   public startTimeForm: FormGroup;
   public endTimeForm: FormGroup;
   public reactiveForm: FormGroup;
-  public disabled = false;
   public dateFormat = 'MM/DD/YYYY';
+  public date = this.context.date;
+  public todayDate = new moment(this.date);
+  public timeNow = this.todayDate.format('HH:mm');
   public maxDate: Date;
   public minDate: Date;
-  public selectedDate = this.context.date;
-  public selectedTime = new moment(this.selectedDate);
-  public selectedHour = this.selectedTime.hour();
-  public selectedMin = this.selectedTime.minute();
 
   public get startTime(): FormControl {
     return this.startTimeForm.get('time') as FormControl;
@@ -46,20 +44,20 @@ export class SkyModalFormComponent implements OnInit {
   constructor(public context: SkyModalContext, public instance: SkyModalInstance, private formBuilder: FormBuilder) { }
   public ngOnInit(): void {
     this.startTimeForm = this.formBuilder.group({
-      time: new FormControl('12:23', Validators.required)
+      time: new FormControl(this.timeNow, Validators.required)
     });
     this.endTimeForm = this.formBuilder.group({
       time: new FormControl('', Validators.required)
     });
     this.reactiveForm = this.formBuilder.group({
-      selectedDate: new FormControl('', Validators.required)
+      selectedDate: new FormControl(this.todayDate.format(this.dateFormat), Validators.required)
     });
   }
   public formatDateForDisplay(date: Date): string {
     return date.toLocaleDateString();
   }
   public resetDates(): void {
-    this.selectedDate = undefined;
+    this.date = undefined;
     this.reactiveDate.setValue(undefined);
   }
   public clearSelectedTimes() {
@@ -67,5 +65,6 @@ export class SkyModalFormComponent implements OnInit {
     this.endTime.setValue(undefined);
   }
   public save() {
+    
   }
 }

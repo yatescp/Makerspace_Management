@@ -10,6 +10,8 @@ import {
   Validators
 } from '@angular/forms';
 
+const moment = require('moment');
+
 import { SkyModalInstance } from '@skyux/modals';
 
 import { SkyModalContext } from './modal-context';
@@ -27,7 +29,10 @@ export class SkyModalFormComponent implements OnInit {
   public dateFormat = 'MM/DD/YYYY';
   public maxDate: Date;
   public minDate: Date;
-  public selectedDate = Date.now;
+  public selectedDate = this.context.date;
+  public selectedTime = new moment(this.selectedDate);
+  public selectedHour = this.selectedTime.hour();
+  public selectedMin = this.selectedTime.minute();
 
   public get startTime(): FormControl {
     return this.startTimeForm.get('time') as FormControl;
@@ -41,7 +46,7 @@ export class SkyModalFormComponent implements OnInit {
   constructor(public context: SkyModalContext, public instance: SkyModalInstance, private formBuilder: FormBuilder) { }
   public ngOnInit(): void {
     this.startTimeForm = this.formBuilder.group({
-      time: new FormControl('', Validators.required)
+      time: new FormControl(this.selectedDate, Validators.required)
     });
     this.endTimeForm = this.formBuilder.group({
       time: new FormControl('', Validators.required)
@@ -60,5 +65,7 @@ export class SkyModalFormComponent implements OnInit {
   public clearSelectedTimes() {
     this.startTime.setValue(undefined);
     this.endTime.setValue(undefined);
+  }
+  public save() {
   }
 }

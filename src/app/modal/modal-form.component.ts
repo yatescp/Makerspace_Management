@@ -34,7 +34,7 @@ export class SkyModalFormComponent implements OnInit {
   public timeNow = this.todayDate.format('HH:mm');
   public maxDate: Date;
   public minDate: Date;
-  public data = [
+  public time = [
     {id: '12A', time: '12:00AM'},
     {id: '1A', time: '1:00AM'},
     {id: '2A', time: '2:00AM'},

@@ -6,36 +6,65 @@
   <h1>
     {{ 'schedule_title' | skyAppResources }}
   </h1>
-<main>
+
+  <div
+  class="columns">
+    <div
+      class="button1">
+      <sky-modal-launcher>
+        Reserve station
+      </sky-modal-launcher>
+    </div>
+    <div
+    class="datepicker">
+      <sky-datepicker>
+        <input
+          skyDatepickerInput
+          [dateFormat]="dateFormat"
+          [disabled]="disabled"
+          [maxDate]="maxDate"
+          [minDate]="minDate"
+          [(ngModel)]="selectedDate"
+          #date="ngModel"
+        />
+      </sky-datepicker>
+    </div>
+    <div
+      class="button2">
+      <a
+        class="sky-btn sky-btn"
+        (click)="today($event)"
+      >
+        Today
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="toolbar">
       <sky-toolbar>
         <sky-toolbar-item>
-          <sky-modal-launcher>
-            Reserve station
-          </sky-modal-launcher>
+          <button type="button" 
+          class="sky-btn sky-btn-default" (click)="goBack($event)">
+          <sky-icon icon="caret-left" size="2x"></sky-icon>
+          </button>
         </sky-toolbar-item>
         <sky-toolbar-item>
-          <button 
-          class="sky-btn sky-btn"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Today</button>
+          <button type="button" 
+          class="sky-btn sky-btn-default" (click)="goForward($event)">
+          <sky-icon icon="caret-right" size="2x"></sky-icon></button>
         </sky-toolbar-item>
         <sky-toolbar-item>
-          <sky-datepicker>
-            <input
-              skyDatepickerInput
-              [dateFormat]="dateFormat"
-              [disabled]="disabled"
-              [maxDate]="maxDate"
-              [minDate]="minDate"
-              [(ngModel)]="selectedDate"
-              #date="ngModel"
-            />
-          </sky-datepicker>
+          {{ theDate | date:'fullDate' }}
         </sky-toolbar-item>
       </sky-toolbar>
-      
+      </div>
+
       <!--Each item requires an `id` and a property that maps to the `field` or `id` property of each column in the grid.-->
+      <div
+        class="fullgrid">
+      <div
+        class="grid1">
         <sky-grid
         fit="scroll"
         [data]="data"
@@ -44,6 +73,15 @@
           field="station"
           heading=" ">
         </sky-grid-column>
+        </sky-grid>
+      </div>
+
+      <div
+        class="grid2">
+        <sky-grid
+        fit="scroll"
+        [data]="data"
+        (sortFieldChange)="onSortChangeForGrid($event)">
         <sky-grid-column
           field="12A"
           heading="12:00 AM">
@@ -141,15 +179,6 @@
           heading="11:00 PM">
         </sky-grid-column>
         </sky-grid>
-
-        <ng-template
-        let-value="value"
-        #customColumnTemplate
-        >
-        <div
-          [ngClass]="{ 'sky-text-danger' : value === 'Past due' }"
-        >
-          {{ value }}
-        </div>
-        </ng-template>
+      </div>
+    </div>
 </main>

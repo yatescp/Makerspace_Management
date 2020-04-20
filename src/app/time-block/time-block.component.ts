@@ -1,5 +1,5 @@
 import {
-  Component, OnInit
+  Component, OnInit, Input
 } from '@angular/core';
 
 import {
@@ -10,7 +10,7 @@ import {
 import {
   Subject
 } from 'rxjs/Subject';
-import { TimeBlockContext } from './time-block-context';
+import { Booking } from '../models/booking';
 
 @Component({
   selector: 'time-block',
@@ -18,15 +18,18 @@ import { TimeBlockContext } from './time-block-context';
 })
 
 export class TimeBlockComponent implements OnInit {
-  public popoverController = new Subject<SkyPopoverMessage>();
-  public name = '';
 
-  constructor(public context: TimeBlockContext) {
+  @Input()
+  public booking: Booking;
+
+  public popoverController = new Subject<SkyPopoverMessage>();
+
+  constructor() {
     // this.name = context.booking.user;
   }
 
   public ngOnInit() {
-    this.name = 'Steven Draugel';
+
   }
   public openPopover(): void {
     this.sendMessage(SkyPopoverMessageType.Open);

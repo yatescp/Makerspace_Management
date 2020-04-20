@@ -1,30 +1,26 @@
-<app-nav>
-</app-nav>
-
 <style>
-  .time_block {
+  .booking-btn {
     background-color: lightblue;
     color: black;
-    margin: 20px;
-    padding: 5px;
+  }
+
+  .clear-btn {
+    background-color: lightblue;
+    color: black;
   }
 </style>
 
-<div id="time_block"
-  class="time_block">
-  <span>{{ name }}</span>
-  <button class="sky-btn sky-margin-inline-default"
+<div *ngIf="booking; else clearButton">
+  <button class="sky-btn booking-btn"
     type="button"
-    (click)="openPopover()"
     [skyPopover]="myPopover"
-    [skyPopoverMessageStream]="popoverController">
-    Open popover
+    skyPopoverTrigger="mouseenter">
+    <span>{{ booking.name }}</span>
+    <br>
+    <span>{{ booking.startTime }} - {{ booking.endTime }}</span>
   </button>
 </div>
 
-<sky-popover #myPopover>
-  <h2>Steven Draugel</h2>
-  <p>10:00am - 11:00am</p>
-  <button (click)="closePopover()">x</button>
-  <button (click)="closePopover()">Edit</button>
-</sky-popover>
+<ng-template #clearButton>
+  <button></button>
+</ng-template>

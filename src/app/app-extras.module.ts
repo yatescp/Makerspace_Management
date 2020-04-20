@@ -13,7 +13,6 @@ import {
 import {
   SkyModalFormComponent
 } from './modal/modal-form.component';
-import { TimeBlockContext } from './time-block/time-block-context';
 
 @NgModule({
   entryComponents: [
@@ -25,7 +24,6 @@ import { TimeBlockContext } from './time-block/time-block-context';
     AppSkyModule,
     SkyAuthHttpModule
   ], providers: [
-    TimeBlockContext
   ]
 
 })

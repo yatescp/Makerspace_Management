@@ -67,16 +67,18 @@
         </sky-grid-column>
       </sky-grid>
     </div>
-
     <div class="grid2">
       <sky-grid fit="scroll"
-        [data]="data"
+        [data]="bookings"
         (sortFieldChange)="onSortChangeForGrid($event)">
-        <sky-grid-column field="12A"
-          heading="12:00 AM">
+        <sky-grid-column id="12A"
+          heading="12:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="1A"
-          heading="1:00 AM">
+        <sky-grid-column id="1A"
+          heading="1:00 AM"
+          [template]="bookingTemplate">
+          <button></button>
         </sky-grid-column>
         <sky-grid-column field="2A"
           heading="2:00 AM">
@@ -147,4 +149,11 @@
       </sky-grid>
     </div>
   </div>
+
+  <ng-template let-value="value"
+    let-row="row"
+    #bookingTemplate>
+    <time-block [booking]="getBooking(value, row)"></time-block>
+  </ng-template>
+
 </main>

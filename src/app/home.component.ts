@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     { id: '0', station: '' },
     { id: '1', station: 'Laser cutter' },
     { id: '2', station: 'Creator Pro - 3D printer 1' },
-    { id: '3', station: 'Creator Pro - 3D printer 2'} ,
+    { id: '3', station: 'Creator Pro - 3D printer 2' },
     { id: '4', station: 'Soldering' },
     { id: '5', station: 'Drill press' },
     { id: '6', station: 'VR/AR' }

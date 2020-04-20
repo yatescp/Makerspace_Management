@@ -96,7 +96,7 @@ export class SkyModalFormComponent implements OnInit {
     this.selectedEnd = undefined;
   }
   public save() {
-    let entry = new Booking(this.context.name, this.date, this.selectedStart, this.selectedEnd, this.selectedStation );
+    let entry = new Booking(this.context.id, this.date, this.selectedStart, this.selectedEnd, this.selectedStation, this.context.name );
     this.context.bookings.push(entry);
     this.instance.close('saved');
   }

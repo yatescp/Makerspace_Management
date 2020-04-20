@@ -1,3 +1,3 @@
 export class SkyModalContext {
-    public value1: string;
+  public value1: string;
 }

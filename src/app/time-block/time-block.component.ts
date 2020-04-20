@@ -1,5 +1,5 @@
 import {
-  Component
+  Component, OnInit
 } from '@angular/core';
 
 import {
@@ -10,21 +10,28 @@ import {
 import {
   Subject
 } from 'rxjs/Subject';
+import { TimeBlockContext } from './time-block-context';
 
 @Component({
   selector: 'time-block',
   templateUrl: './time-block.component.html'
 })
 
-
-export class TimeBlockComponent {
-
+export class TimeBlockComponent implements OnInit {
   public popoverController = new Subject<SkyPopoverMessage>();
+  public name = '';
 
+  constructor(public context: TimeBlockContext) {
+    // this.name = context.booking.user;
+  }
+
+  public ngOnInit() {
+    this.name = 'Steven Draugel';
+  }
   public openPopover(): void {
     this.sendMessage(SkyPopoverMessageType.Open);
-  }  
-  
+  }
+
   public closePopover(): void {
     this.sendMessage(SkyPopoverMessageType.Close);
   }
@@ -33,7 +40,4 @@ export class TimeBlockComponent {
     const message: SkyPopoverMessage = { type };
     this.popoverController.next(message);
   }
-
-  //document.getElementById("time_block").onclick = this.openPopover;
-  
 }

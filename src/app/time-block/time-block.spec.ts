@@ -15,16 +15,14 @@ import {
   TimeBlockComponent
 } from './time-block.component';
 
-
-//app modules
-import{
+// app modules
+import {
   AppSkyModule
-} from './app-sky.module';
+} from '../app-sky.module';
 
-import{
+import {
   AppExtrasModule
-} from './app-extras.module';
-
+} from '../app-extras.module';
 
 describe('time-block component', () => {
 

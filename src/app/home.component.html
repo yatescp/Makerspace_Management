@@ -6,167 +6,139 @@
   <h1>
     {{ 'schedule_title' | skyAppResources }}
   </h1>
-  <div class="row" style="margin-top: 15px;  padding: 15px;">
+  <div class="row"
+    style="margin-top: 15px;  padding: 15px;">
     <div class="col-md-6">
       <sky-modal-launcher>
         Reserve station
       </sky-modal-launcher>
-      <button class="sky-btn sky-btn" rel="noopener noreferrer" target="_blank">
+      <button class="sky-btn sky-btn"
+        rel="noopener noreferrer"
+        target="_blank">
         Today
       </button>
 
       <sky-datepicker>
-        <input skyDatepickerInput [dateFormat]="dateFormat" [disabled]="disabled" [maxDate]="maxDate"
-          [minDate]="minDate" [(ngModel)]="selectedDate" #date="ngModel" />
+        <input skyDatepickerInput
+          [dateFormat]="dateFormat"
+          [disabled]="disabled"
+          [maxDate]="maxDate"
+          [minDate]="minDate"
+          [(ngModel)]="selectedDate"
+          #date="ngModel" />
       </sky-datepicker>
     </div>
   </div>
-</main>
-      <sky-toolbar>
-        <sky-toolbar-item>
-          <button 
-          class="sky-btn sky-btn-primary"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Reserve station</button>
-        </sky-toolbar-item>
-        <sky-toolbar-item>
-          <button 
-          class="sky-btn sky-btn"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Today</button>
-        </sky-toolbar-item>
-        <sky-toolbar-item>
-          <sky-datepicker>
-            <input
-              skyDatepickerInput
-              [dateFormat]="dateFormat"
-              [disabled]="disabled"
-              [maxDate]="maxDate"
-              [minDate]="minDate"
-              [(ngModel)]="selectedDate"
-              #date="ngModel"
-            />
-          </sky-datepicker>
-        </sky-toolbar-item>
-      </sky-toolbar>
-      
-      <!--Each item requires an `id` and a property that maps to the `field` or `id` property of each column in the grid.-->
-        <sky-grid
-        fit="scroll"
-        [data]="data"
-        (sortFieldChange)="onSortChangeForGrid($event)">
-        <sky-grid-column
-          field="station"
-          heading=" ">
-        </sky-grid-column>
-        <sky-grid-column
-          field="12A"
-          heading="12:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="1A"
-          heading="1:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="2A"
-          heading="2:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="3A"
-          heading="3:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="4A"
-          heading="4:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="5A"
-          heading="5:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="6A"
-          heading="6:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="7A"
-          heading="7:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="8A"
-          heading="8:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="9A"
-          heading="9:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="10A"
-          heading="10:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="11A"
-          heading="11:00 AM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="12P"
-          heading="12:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="1P"
-          heading="1:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="2P"
-          heading="2:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="3P"
-          heading="3:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="4P"
-          heading="4:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="5P"
-          heading="5:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="6P"
-          heading="6:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="7P"
-          heading="7:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="8P"
-          heading="8:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="9P"
-          heading="9:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="10P"
-          heading="10:00 PM">
-        </sky-grid-column>
-        <sky-grid-column
-          field="11P"
-          heading="11:00 PM">
-        </sky-grid-column>
-        </sky-grid>
+  <sky-toolbar>
+    <sky-toolbar-item>
+      <button class="sky-btn sky-btn-primary"
+        rel="noopener noreferrer"
+        target="_blank">Reserve station</button>
+    </sky-toolbar-item>
+    <sky-toolbar-item>
+      <button class="sky-btn sky-btn"
+        rel="noopener noreferrer"
+        target="_blank">Today</button>
+    </sky-toolbar-item>
+    <sky-toolbar-item>
+      <sky-datepicker>
+        <input skyDatepickerInput
+          [dateFormat]="dateFormat"
+          [disabled]="disabled"
+          [maxDate]="maxDate"
+          [minDate]="minDate"
+          [(ngModel)]="selectedDate"
+          #date="ngModel" />
+      </sky-datepicker>
+    </sky-toolbar-item>
+  </sky-toolbar>
 
-        <ng-template
-        let-value="value"
-        #customColumnTemplate
-        >
-        <div
-          [ngClass]="{ 'sky-text-danger' : value === 'Past due' }"
-        >
-          {{ value }}
-        </div>
-        </ng-template>
+  <!--Each item requires an `id` and a property that maps to the `field` or `id` property of each column in the grid.-->
+  <sky-grid fit="scroll"
+    [data]="data"
+    (sortFieldChange)="onSortChangeForGrid($event)">
+    <sky-grid-column field="station"
+      heading=" ">
+    </sky-grid-column>
+    <sky-grid-column field="12A"
+      heading="12:00 AM">
+      <time-block></time-block>
+    </sky-grid-column>
+    <sky-grid-column field="1A"
+      heading="1:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="2A"
+      heading="2:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="3A"
+      heading="3:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="4A"
+      heading="4:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="5A"
+      heading="5:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="6A"
+      heading="6:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="7A"
+      heading="7:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="8A"
+      heading="8:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="9A"
+      heading="9:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="10A"
+      heading="10:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="11A"
+      heading="11:00 AM">
+    </sky-grid-column>
+    <sky-grid-column field="12P"
+      heading="12:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="1P"
+      heading="1:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="2P"
+      heading="2:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="3P"
+      heading="3:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="4P"
+      heading="4:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="5P"
+      heading="5:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="6P"
+      heading="6:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="7P"
+      heading="7:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="8P"
+      heading="8:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="9P"
+      heading="9:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="10P"
+      heading="10:00 PM">
+    </sky-grid-column>
+    <sky-grid-column field="11P"
+      heading="11:00 PM">
+    </sky-grid-column>
+  </sky-grid>
+
+  <ng-template let-value="value"
+    #customColumnTemplate>
+    <div [ngClass]="{ 'sky-text-danger' : value === 'Past due' }">
+      {{ value }}
+    </div>
+  </ng-template>
 </main>

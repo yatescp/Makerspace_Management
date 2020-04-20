@@ -3,89 +3,110 @@
     {{title}}
   </sky-modal-header>
   <sky-modal-content>
+    <style>
+    .column {
+      float: left;
+      width: 50%;
+      }
+  
+      .row:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+      </style>
+    <div class="row">
+      <form novalidate>
+        <div class="column">
+          <div>
+            <label>
+              Station:
+            </label>
+            <select [(ngModel)]="selectedStation" [ngModelOptions]="{standalone: true}" id="Stations" required>
+              <option value="LC">Laser Cutter</option>
+              <option value="CP3D1">Creator Pro-3D printer 1</option>
+              <option value="CP3D2">Creator Pro-3D printer 2</option>
+              <option value="S">Soldering</option>
+              <option value="DR">Drill Press</option>
+              <option value="VR">VR/AR</option>
+            </select>
+          </div>
+          <div [formGroup]="reactiveForm">
+            <label>Date</label>
+            <sky-datepicker>
+              <input formControlName="selectedDate" skyDatepickerInput [maxDate]="maxDate" [minDate]="minDate"
+                [(ngModel)]="date" />
+            </sky-datepicker>
+            <p *ngIf="reactiveDate.errors && (reactiveDate.dirty || reactiveDate.touched)" class="sky-error-label">
+              <span *ngIf="reactiveDate.errors.skyDate?.invalid">
+                Please enter a date in the '{{ dateFormat }}' format.
+              </span>
+              <span *ngIf="reactiveDate.errors.skyDate?.maxDate">
+                This date is later than allowed. Please select a date before {{ formatDateForDisplay(maxDate) }}.
+              </span>
+              <span *ngIf="reactiveDate.errors.skyDate?.minDate">
+                This date is earlier than allowed. Please select a date after {{ formatDateForDisplay(minDate) }}.
+              </span>
+              <span *ngIf="reactiveDate.errors.required">
+                A date is required.
+              </span>
+            </p>
+          </div>
+          <div [formGroup]="startTimeForm">
+            <label>Start Time:</label>
+            <sky-timepicker #startTimePicker>
+              <input formControlName="time" type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker"
+                [(ngModel)]="selectedStart" />
+            </sky-timepicker>
+            <p *ngIf="startTime.errors && (startTime.dirty || startTime.touched)" class="sky-error-label">
+              <!--<span [hidden]="startTime.errors && !startTime.errors.time.invalid">
+            Enter a valid time.
+          </span>
+            -->
+              <span *ngIf="startTime.errors.required">
+                Time is required. Select a value.
+              </span>
 
-    <form novalidate>
-      <div class="columnm">
-        <div>
-          <label>
-            Station:
-          </label>
-          <select id="Stations" required [(ngModel)]="selectedStation">
-            <option value="1">Laser Cutter</option>
-            <option value="2">Creator Pro-3D printer 1</option>
-            <option value="3">Creator Pro-3D printer 2</option>
-            <option value="4">Soldering</option>
-            <option value="5">Drill Press</option>
-            <option value="6">VR/AR</option>
-          </select>
-        </div>
-        <div [formGroup]="reactiveForm">
-          <label>Date</label>
-          <sky-datepicker>
-            <input formControlName="selectedDate" skyDatepickerInput [maxDate]="maxDate" [minDate]="minDate"
-              [(ngModel)]="date" />
-          </sky-datepicker>
-          <p *ngIf="reactiveDate.errors && (reactiveDate.dirty || reactiveDate.touched)" class="sky-error-label">
-            <span *ngIf="reactiveDate.errors.skyDate?.invalid">
-              Please enter a date in the '{{ dateFormat }}' format.
-            </span>
-            <span *ngIf="reactiveDate.errors.skyDate?.maxDate">
-              This date is later than allowed. Please select a date before {{ formatDateForDisplay(maxDate) }}.
-            </span>
-            <span *ngIf="reactiveDate.errors.skyDate?.minDate">
-              This date is earlier than allowed. Please select a date after {{ formatDateForDisplay(minDate) }}.
-            </span>
-            <span *ngIf="reactiveDate.errors.required">
-              A date is required.
-            </span>
-          </p>
-        </div>
-        <div [formGroup]="startTimeForm">
-          <label>Start Time:</label>
-          <sky-timepicker #startTimePicker>
-            <input formControlName="time" type="text" [timeFormat]="format12" [skyTimepickerInput]="startTimePicker"
-              [(ngModel)]="selectedStart" />
-          </sky-timepicker>
-          <p *ngIf="startTime.errors && (startTime.dirty || startTime.touched)" class="sky-error-label">
-            <!--<span [hidden]="startTime.errors && !startTime.errors.time.invalid">
+              <span *ngIf="startTime.errors.skyTime">
+                The time is invalid. Enter a valid time or use the picker.
+              </span>
+            </p>
+          </div>
+          <div [formGroup]="endTimeForm">
+            <label>End Time:</label>
+            <sky-timepicker #endTimePicker>
+              <input formControlName="time" type="text" [timeFormat]="format12" [skyTimepickerInput]="endTimePicker"
+                [(ngModel)]="selectedEnd" />
+            </sky-timepicker>
+            <p *ngIf="endTime.errors && (endTime.dirty || endTime.touched)" class="sky-error-label">
+              <!-- <span [hidden]="endTime.errors && !endTime.errors.time.invalid">
             Enter a valid time.
           </span>
         -->
-            <span *ngIf="startTime.errors.required">
-              Time is required. Select a value.
-            </span>
+              <span *ngIf="endTime.errors.required">
+                Enter a valid time. Time is required. Select a value.
+              </span>
 
-            <span *ngIf="startTime.errors.skyTime">
-              The time is invalid. Enter a valid time or use the picker.
-            </span>
-          </p>
+              <span *ngIf="endTime.errors.skyTime">
+                Enter a valid time. The time is invalid. Enter a valid time or use the picker.
+              </span>
+            </p>
+          </div>
         </div>
-        <div [formGroup]="endTimeForm">
-          <label>End Time:</label>
-          <sky-timepicker #endTimePicker>
-            <input formControlName="time" type="text" [timeFormat]="format12" [skyTimepickerInput]="endTimePicker"
-              [(ngModel)]="selectedEnd" />
-          </sky-timepicker>
-          <p *ngIf="endTime.errors && (endTime.dirty || endTime.touched)" class="sky-error-label">
-            <!-- <span [hidden]="endTime.errors && !endTime.errors.time.invalid">
-            Enter a valid time.
-          </span>
-        -->
-            <span *ngIf="endTime.errors.required">
-              Enter a valid time. Time is required. Select a value.
-            </span>
-
-            <span *ngIf="endTime.errors.skyTime">
-              Enter a valid time. The time is invalid. Enter a valid time or use the picker.
-            </span>
-          </p>
+        <div class="column">
+          <sky-grid fit="scroll" [data]="data">
+            <sky-grid-column
+            field="time"
+            locked="true" isSortable="false">
+            </sky-grid-column>
+            <sky-grid-column
+            locked="true" isSortable="false">
+              <!--bookings go here-->
+            </sky-grid-column>
+          </sky-grid>
         </div>
-      </div>
-      <div class="column">
-
-
-      </div>
-    </form>
+      </form>
+    </div>
   </sky-modal-content>
   <sky-modal-footer>
     <button type="button" class="sky-btn sky-btn-primary" (click)="save()">

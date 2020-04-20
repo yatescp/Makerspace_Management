@@ -1,0 +1,38 @@
+<app-nav>
+</app-nav>
+
+<style>
+.time_block {
+  background-color: lightblue;
+  color: black;
+  margin: 20px;
+  padding: 5px;
+}
+</style>
+
+<div 
+  id = "time_block" 
+  class="time_block" >
+  <h2 id = "name">No</h2>
+  <p id = "time">Worky</p>
+  <button
+    class="sky-btn sky-margin-inline-default"
+    type="button"
+    (click)="openPopover()"
+    [skyPopover]="myPopover"
+    [skyPopoverMessageStream]="popoverController"
+  >
+    Open popover
+  </button>
+</div>
+
+<sky-popover #myPopover>
+  <h2>Steven Draugel</h2>
+  <p>10:00am - 11:00am</p>
+  <button
+    (click)="closePopover()"
+  >x</button>
+  <button
+    (click)="closePopover()"
+  >Edit</button>
+</sky-popover>

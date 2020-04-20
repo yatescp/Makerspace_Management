@@ -15,7 +15,7 @@ export class SkyModalComponent {
 
   public openModal() {
     let context = new SkyModalContext();
-    context.value1 = 'Default text';
+    context.name = 'GOAT';
 
     let modalInstance = this.modal.open(SkyModalFormComponent, {
 

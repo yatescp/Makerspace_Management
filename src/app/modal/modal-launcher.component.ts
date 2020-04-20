@@ -16,6 +16,7 @@ export class SkyModalComponent {
   public openModal() {
     let context = new SkyModalContext();
     context.name = 'GOAT';
+    context.id = '1'; // placeholder values
 
     let modalInstance = this.modal.open(SkyModalFormComponent, {
 

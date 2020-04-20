@@ -35,31 +35,31 @@ export class SkyModalFormComponent implements OnInit {
   public maxDate: Date;
   public minDate: Date;
   public time = [
-    {id: '12A', time: '12:00AM'},
-    {id: '1A', time: '1:00AM'},
-    {id: '2A', time: '2:00AM'},
-    {id: '3A', time: '3:00AM'},
-    {id: '4A', time: '4:00AM'},
-    {id: '5A', time: '5:00AM'},
-    {id: '6A', time: '6:00AM'},
-    {id: '7A', time: '7:00AM'},
-    {id: '8A', time: '8:00AM'},
-    {id: '9A', time: '9:00AM'},
-    {id: '10A', time: '10:00AM'},
-    {id: '11A', time: '11:00AM'},
-    {id: '12P', time: '12:00PM'},
-    {id: '1p', time: '1:00PM'},
-    {id: '2P', time: '2:00PM'},
-    {id: '3P', time: '3:00PM'},
-    {id: '4P', time: '4:00PM'},
-    {id: '5P', time: '5:00PM'},
-    {id: '6P', time: '6:00PM'},
-    {id: '7P', time: '7:00PM'},
-    {id: '8P', time: '8:00PM'},
-    {id: '9P', time: '9:00PM'},
-    {id: '10P', time: '10:00PM'},
-    {id: '11P', time: '11:00PM'}
-];
+    { id: '12A', time: '12:00AM' },
+    { id: '1A', time: '1:00AM' },
+    { id: '2A', time: '2:00AM' },
+    { id: '3A', time: '3:00AM' },
+    { id: '4A', time: '4:00AM' },
+    { id: '5A', time: '5:00AM' },
+    { id: '6A', time: '6:00AM' },
+    { id: '7A', time: '7:00AM' },
+    { id: '8A', time: '8:00AM' },
+    { id: '9A', time: '9:00AM' },
+    { id: '10A', time: '10:00AM' },
+    { id: '11A', time: '11:00AM' },
+    { id: '12P', time: '12:00PM' },
+    { id: '1p', time: '1:00PM' },
+    { id: '2P', time: '2:00PM' },
+    { id: '3P', time: '3:00PM' },
+    { id: '4P', time: '4:00PM' },
+    { id: '5P', time: '5:00PM' },
+    { id: '6P', time: '6:00PM' },
+    { id: '7P', time: '7:00PM' },
+    { id: '8P', time: '8:00PM' },
+    { id: '9P', time: '9:00PM' },
+    { id: '10P', time: '10:00PM' },
+    { id: '11P', time: '11:00PM' }
+  ];
 
   public get startTime(): FormControl {
     return this.startTimeForm.get('time') as FormControl;
@@ -96,8 +96,10 @@ export class SkyModalFormComponent implements OnInit {
     this.selectedEnd = undefined;
   }
   public save() {
-    let entry = new Booking(this.context.id, this.date, this.selectedStart, this.selectedEnd, this.selectedStation, this.context.name );
-    this.context.bookings.push(entry);
-    this.instance.close('saved');
+    if (this.context.id && this.date && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
+      let entry = new Booking(this.context.id, this.date, this.selectedStart, this.selectedEnd, this.selectedStation, this.context.name);
+      this.context.bookings.push(entry);
+      this.instance.close('saved');
+    } else { }
   }
 }

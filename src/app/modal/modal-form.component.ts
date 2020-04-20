@@ -92,8 +92,9 @@ export class SkyModalFormComponent implements OnInit {
   public clearSelectedTimes() {
     this.startTime.setValue(undefined);
     this.endTime.setValue(undefined);
+    this.selectedStart = undefined;
     this.selectedEnd = undefined;
-    this.selectedEnd = undefined;
+    this.selectedStation = undefined;
   }
   public save() {
     if (this.context.id && this.date && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {

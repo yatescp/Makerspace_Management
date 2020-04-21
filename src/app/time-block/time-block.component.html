@@ -19,7 +19,7 @@
     <br>
     <span>{{ booking.startTime }} - {{ booking.endTime }}</span>
   </button>
-</div>
+
 
 <sky-popover
   popoverTitle="{{ booking.station }}"
@@ -32,6 +32,7 @@
   <button><sky-icon icon="pencil" size="1x"></sky-icon></button>
   <button><sky-icon icon="trash-o" size="1x"></sky-icon></button>
 </sky-popover>
+</div>
 
 <ng-template #clearButton>
   <button></button>

@@ -13,10 +13,16 @@ import { SkyModalFormComponent } from './modal-form.component';
 export class SkyModalComponent {
   constructor(private modal: SkyModalService) { }
 
-  public openModal() {
+  public openModal(id: string, date: string, start: string, end: string, name: string, station: string) {
     let context = new SkyModalContext();
-    context.name = 'GOAT';
-    context.id = '1'; // placeholder values
+    context.name = name;
+    context.date = date;
+    context.start = start;
+    context.end = end;
+    context.id = id;
+    context.station = station;
+    context.entry = new Booking(id, 'idk', date, start, end, name, station)
+    // placeholder values
 
     let modalInstance = this.modal.open(SkyModalFormComponent, {
 

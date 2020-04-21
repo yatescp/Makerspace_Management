@@ -159,14 +159,12 @@ export class HomeComponent implements OnInit {
 
   public getBooking(id: string): Booking {
 
-
-
-    if (id == '0') {
+    if (id === '0') {
       return null;
     }
 
     for (var i = 0; i < this.bookings.length; i++) {
-      if (this.bookings[i].id == id) {
+      if (this.bookings[i].id === id) {
         return this.bookings[i];
       }
     }
@@ -189,7 +187,7 @@ export class HomeComponent implements OnInit {
 
     //Hardcoded
 
-    booking = new Booking("1", "GOAT Lazer cutter", '04/21/2020', "4:00 PM", "5:00 PM", "GOAT", "Laser cutter");
+    booking = new Booking('1', 'GOAT Lazer cutter', '04/21/2020', '4:00 PM', '5:00 PM', 'GOAT', 'Laser cutter');
 
     this.addBookingToGrid(booking);
 

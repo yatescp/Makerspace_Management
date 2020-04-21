@@ -1,6 +1,7 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  Input
 } from '@angular/core';
 
 import {
@@ -15,6 +16,8 @@ import {
 import { SkyModalInstance } from '@skyux/modals';
 
 import { SkyModalContext } from './modal-context';
+
+import { Booking } from '../models/booking';
 
 @Component({
   selector: 'sky-modal-form',
@@ -98,18 +101,7 @@ export class SkyModalFormComponent implements OnInit {
     this.selectedStation = undefined;
   }
   public save() {
-    if (this.context.id && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
-      /**
-      this.context.entry = new Booking(
-        this.context.id,
-        this.date,
-        this.selectedStart,
-        this.selectedEnd,
-        this.selectedStation,
-        this.context.name
-      );
-      */
-      // this.context.bookings.push(entry);
+    if (this.context.id && this.selectedDate && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
       this.instance.close(this.context.entry);
     } else { }
   }

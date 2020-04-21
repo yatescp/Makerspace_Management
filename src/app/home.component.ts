@@ -13,17 +13,20 @@ import {
 } from '@skyux/grids';
 
 import {
-  ListSortFieldSelectorModel
-} from '@skyux/list-builder-common';
-
-import {
   BehaviorSubject
 } from 'rxjs/BehaviorSubject';
 
 import {
   Subject
 } from 'rxjs/Subject';
+
 import { Booking } from './models/booking';
+
+import { SkyModalService, SkyModalCloseArgs } from '@skyux/modals';
+
+import { SkyModalContext } from './modal/modal-context';
+
+import { SkyModalFormComponent } from './modal/modal-form.component';
 
 @Component({
   selector: 'my-home',
@@ -128,6 +131,10 @@ export class HomeComponent implements OnInit {
 
   public gridController = new Subject<SkyGridMessage>();
 
+  public entry: Booking;
+
+  constructor(private modal: SkyModalService) { }
+
   public ngOnInit() {
     // // Simulate async request:
     // setTimeout(() => {
@@ -145,14 +152,6 @@ export class HomeComponent implements OnInit {
 
   public today(event: any): void {
     this.theDate = new Date(this.year, this.month, this.number);
-  }
-
-  public onSortChangeForGrid(activeSort: ListSortFieldSelectorModel) {
-    this.data = this.sortGridData(activeSort, this.data);
-  }
-
-  public onSortChangeForMultiselectGrid(activeSort: ListSortFieldSelectorModel) {
-    this.dataForMultiselect = this.sortGridData(activeSort, this.dataForMultiselect);
   }
 
   public onMultiselectSelectionChange(value: SkyGridSelectedRowsModelChange) {
@@ -204,34 +203,29 @@ export class HomeComponent implements OnInit {
 
       this.timeBlocks[0]["_16"] = _booking.id.toString();
   }
+  public openModal(id: string, date: string, start: string, end: string, name: string, station: string) {
+    let context = new SkyModalContext();
+    context.name = name;
+    context.date = date;
+    context.start = start;
+    context.end = end;
+    context.id = id;
+    context.station = station;
+    context.entry = new Booking(id, 'idk', date, start, end, name, station);
+    // placeholder values
 
-  private sortGridData(activeSort: ListSortFieldSelectorModel, data: any[]) {
-    const sortField = activeSort.fieldSelector;
-    const descending = activeSort.descending;
+    let modalInstance = this.modal.open(SkyModalFormComponent, {
 
-    return data.sort((a: any, b: any) => {
-      let value1 = a[sortField];
-      let value2 = b[sortField];
+      providers: [
+        {
+          provide: SkyModalContext, useValue: context}
+      ]
+    });
 
-      if (value1 && typeof value1 === 'string') {
-        value1 = value1.toLowerCase();
-      }
-
-      if (value2 && typeof value2 === 'string') {
-        value2 = value2.toLowerCase();
-      }
-
-      if (value1 === value2) {
-        return 0;
-      }
-
-      let result = value1 > value2 ? 1 : -1;
-
-      if (descending) {
-        result *= -1;
-      }
-
-      return result;
-    }).slice();
+    modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
+      console.log('Modal closed with reason: ' + result.reason + ' and data: ' + result.data);
+      this.entry = result.data;
+      console.log(this.entry);
+    });
   }
 }

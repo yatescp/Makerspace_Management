@@ -2,11 +2,16 @@
   .booking-btn {
     background-color: lightblue;
     color: black;
+    height:60px;
+    width:140px;
   }
 
   .clear-btn {
-    background-color: lightblue;
-    color: black;
+    height:60px;
+    width:140px;
+    background: transparent;
+    border: none !important;
+    font-size:0;
   }
 </style>
 
@@ -34,5 +39,6 @@
 </sky-popover>
 
 <ng-template #clearButton>
-  <button></button>
+  <button class="sky-btn clear-btn"
+  ></button>
 </ng-template>

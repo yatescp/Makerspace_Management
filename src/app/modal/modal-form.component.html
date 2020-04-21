@@ -34,8 +34,7 @@
           <div [formGroup]="reactiveForm">
             <label>Date</label>
             <sky-datepicker>
-              <input formControlName="selectedDate" skyDatepickerInput [maxDate]="maxDate" [minDate]="minDate"
-                [(ngModel)]="date" />
+              <input formControlName="selectedDate" skyDatepickerInput [maxDate]="maxDate" [minDate]="minDate" [(ngModel)]="date" />
             </sky-datepicker>
             <p *ngIf="reactiveDate.errors && (reactiveDate.dirty || reactiveDate.touched)" class="sky-error-label">
               <span *ngIf="reactiveDate.errors.skyDate?.invalid">

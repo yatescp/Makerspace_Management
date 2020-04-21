@@ -10,7 +10,7 @@ import {
   Validators
 } from '@angular/forms';
 
-const moment = require('moment');
+// const moment = require('moment');
 
 import { SkyModalInstance } from '@skyux/modals';
 
@@ -29,9 +29,10 @@ export class SkyModalFormComponent implements OnInit {
   public selectedStart: any;
   public selectedEnd: any;
   public selectedStation: any;
-  public date = this.context.date;
-  public todayDate = new moment(this.date);
-  public timeNow = this.todayDate.format('HH:mm');
+  public selectedDate: any;
+  // public date = this.context.date;
+  // public todayDate = new moment(this.date);
+  // public timeNow = this.todayDate.format('HH:mm');
   public maxDate: Date;
   public minDate: Date;
   public time = [
@@ -73,20 +74,20 @@ export class SkyModalFormComponent implements OnInit {
   constructor(public context: SkyModalContext, public instance: SkyModalInstance, private formBuilder: FormBuilder) { }
   public ngOnInit(): void {
     this.startTimeForm = this.formBuilder.group({
-      time: new FormControl(this.timeNow, Validators.required)
+      time: new FormControl('', Validators.required)
     });
     this.endTimeForm = this.formBuilder.group({
       time: new FormControl('', Validators.required)
     });
     this.reactiveForm = this.formBuilder.group({
-      selectedDate: new FormControl(this.todayDate.format(this.dateFormat), Validators.required)
+      selectedDate: new FormControl('', Validators.required)
     });
   }
   public formatDateForDisplay(date: Date): string {
     return date.toLocaleDateString();
   }
   public resetDates(): void {
-    this.date = undefined;
+    this.selectedDate = undefined;
     this.reactiveDate.setValue(undefined);
   }
   public clearSelectedTimes() {
@@ -97,10 +98,19 @@ export class SkyModalFormComponent implements OnInit {
     this.selectedStation = undefined;
   }
   public save() {
-    if (this.context.id && this.date && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
-      let entry = new Booking(this.context.id, this.date, this.selectedStart, this.selectedEnd, this.selectedStation, this.context.name);
-      this.context.bookings.push(entry);
-      this.instance.close('saved');
+    if (this.context.id && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
+      /**
+      this.context.entry = new Booking(
+        this.context.id,
+        this.date,
+        this.selectedStart,
+        this.selectedEnd,
+        this.selectedStation,
+        this.context.name
+      );
+      */
+      // this.context.bookings.push(entry);
+      this.instance.close(this.context.entry);
     } else { }
   }
 }

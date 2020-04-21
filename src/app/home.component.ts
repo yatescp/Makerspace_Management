@@ -23,6 +23,7 @@ import {
 import {
   Subject
 } from 'rxjs/Subject';
+import { Booking } from './models/booking';
 
 @Component({
   selector: 'my-home',
@@ -48,6 +49,23 @@ export class HomeComponent implements OnInit {
     { id: '6', station: 'VR/AR' }
   ];
 
+  public bookings = [
+    {
+      id: '0',
+      title: 'Laser Cutter Booking',
+      date: '04/20/20',
+      start: '12:00',
+      end: '01:00',
+      name: 'Steven Draugel',
+      station: 'Laser cutter'
+    },
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' }
+  ];
+
   public dataForMultiselect = this.data.slice(0);
 
   public asyncHeading = new BehaviorSubject<string>('');
@@ -56,23 +74,23 @@ export class HomeComponent implements OnInit {
 
   public gridController = new Subject<SkyGridMessage>();
 
+  public ngOnInit() {
+    // // Simulate async request:
+    // setTimeout(() => {
+    //   this.asyncHeading.next('Amount');
+    // }, 1000);
+  }
+
   public goBack(event: any): void {
     this.theDate = new Date(this.year, this.month, this.number - 1);
   }
 
   public goForward(event: any): void {
     this.theDate = new Date(this.year, this.month, this.number + 1);
-}
+  }
 
   public today(event: any): void {
     this.theDate = new Date(this.year, this.month, this.number);
-  }
-
-  public ngOnInit() {
-    // Simulate async request:
-    setTimeout(() => {
-      this.asyncHeading.next('Amount');
-    }, 1000);
   }
 
   public onSortChangeForGrid(activeSort: ListSortFieldSelectorModel) {
@@ -85,6 +103,19 @@ export class HomeComponent implements OnInit {
 
   public onMultiselectSelectionChange(value: SkyGridSelectedRowsModelChange) {
     this.selectedRows = value.selectedRowIds.toString();
+  }
+
+  public getBooking(id: string, row: any): Booking {
+    console.log(id);
+    return new Booking(
+      '0',
+      'Laser Cutter Booking',
+      '04/20/20',
+      '12:00',
+      '01:00',
+      'Steven Draugel',
+      'Laser cutter'
+    );
   }
 
   private sortGridData(activeSort: ListSortFieldSelectorModel, data: any[]) {

@@ -53,7 +53,7 @@
     "@skyux/list-builder-common": "3.0.0",
     "@skyux/list-builder-view-checklist": "3.2.0",
     "@skyux/list-builder-view-grids": "3.6.2",
-    "@skyux/lists": "3.8.5",
+    "@skyux/lists": "^3.8.5",
     "@skyux/lookup": "3.4.1",
     "@skyux/modals": "3.2.0",
     "@skyux/navbar": "3.0.1",
@@ -92,7 +92,7 @@
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~3.0.0",
+    "karma": "^5.0.2",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
@@ -102,5 +102,8 @@
     "tslint": "^5.11.0",
     "typescript": "~3.1.1"
   },
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "resolution": {
+    "@babel/plugin-proposal-numeric-separator": "^7.8.3"
+  }
 }

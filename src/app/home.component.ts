@@ -217,12 +217,12 @@ export class HomeComponent implements OnInit {
 
     console.log("timeBlock from " + booking.startTime + " = " + slot);
 
-    //This works with string constants, so there must be a way to force it to work with string variables
-    //Edit: There isn't :(
+    //This works with string constants, and even though theres an error it works with variables too
+    //This is a super unsafe way to do it but its better than that switch you see below
     this.timeBlocks[stationId][slot] = booking.id;
 
     /*
-    //Ungoldy Switch because the above code wouldnt work
+    //Ungoldy Switch made in case the above code doesnt work
     switch (slot) {
       case "_00": {
         this.timeBlocks[stationId]["_00"] = booking.id;

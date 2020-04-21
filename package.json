@@ -40,7 +40,7 @@
     "@skyux/avatar": "3.1.0",
     "@skyux/config": "3.8.1",
     "@skyux/core": "3.14.2",
-    "@skyux/datetime": "3.9.0",
+    "@skyux/datetime": "^3.9.0",
     "@skyux/errors": "3.2.0",
     "@skyux/forms": "3.6.3",
     "@skyux/grids": "3.6.0",

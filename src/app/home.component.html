@@ -63,88 +63,110 @@
         [data]="data"
         (sortFieldChange)="onSortChangeForGrid($event)">
         <sky-grid-column field="station"
-          heading=" ">
+          heading=" "
+          [template]="stationTemplate">
         </sky-grid-column>
       </sky-grid>
     </div>
     <div class="grid2">
       <sky-grid fit="scroll"
-        [data]="bookings"
+        [data]="timeBlocks"
         (sortFieldChange)="onSortChangeForGrid($event)">
-        <sky-grid-column id="12A"
+        <sky-grid-column field="_00"
           heading="12:00 AM"
           [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column id="1A"
+        <sky-grid-column field="_01"
           heading="1:00 AM"
           [template]="bookingTemplate">
-          <button></button>
         </sky-grid-column>
-        <sky-grid-column field="2A"
-          heading="2:00 AM">
+        <sky-grid-column field="_02"
+          heading="2:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="3A"
-          heading="3:00 AM">
+        <sky-grid-column field="_03"
+          heading="3:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="4A"
-          heading="4:00 AM">
+        <sky-grid-column field="_04"
+          heading="4:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="5A"
-          heading="5:00 AM">
+        <sky-grid-column field="_05"
+          heading="5:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="6A"
-          heading="6:00 AM">
+        <sky-grid-column field="_06"
+          heading="6:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="7A"
-          heading="7:00 AM">
+        <sky-grid-column field="_07"
+          heading="7:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="8A"
-          heading="8:00 AM">
+        <sky-grid-column field="_08"
+          heading="8:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="9A"
-          heading="9:00 AM">
+        <sky-grid-column field="_09"
+          heading="9:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="10A"
-          heading="10:00 AM">
+        <sky-grid-column field="_10"
+          heading="10:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="11A"
-          heading="11:00 AM">
+        <sky-grid-column field="_11"
+          heading="11:00 AM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="12P"
-          heading="12:00 PM">
+        <sky-grid-column field="_12"
+          heading="12:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="1P"
-          heading="1:00 PM">
+        <sky-grid-column field="_13"
+          heading="1:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="2P"
-          heading="2:00 PM">
+        <sky-grid-column field="_14"
+          heading="2:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="3P"
-          heading="3:00 PM">
+        <sky-grid-column field="_15"
+          heading="3:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="4P"
-          heading="4:00 PM">
+        <sky-grid-column field="_16"
+          heading="4:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="5P"
-          heading="5:00 PM">
+        <sky-grid-column field="_17"
+          heading="5:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="6P"
-          heading="6:00 PM">
+        <sky-grid-column field="_18"
+          heading="6:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="7P"
-          heading="7:00 PM">
+        <sky-grid-column field="_19"
+          heading="7:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="8P"
-          heading="8:00 PM">
+        <sky-grid-column field="_20"
+          heading="8:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="9P"
-          heading="9:00 PM">
+        <sky-grid-column field="_21"
+          heading="9:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="10P"
-          heading="10:00 PM">
+        <sky-grid-column field="_22"
+          heading="10:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
-        <sky-grid-column field="11P"
-          heading="11:00 PM">
+        <sky-grid-column field="_23"
+          heading="11:00 PM"
+          [template]="bookingTemplate">
         </sky-grid-column>
       </sky-grid>
     </div>
@@ -153,7 +175,28 @@
   <ng-template let-value="value"
     let-row="row"
     #bookingTemplate>
-    <time-block [booking]="getBooking(value, row)"></time-block>
+    <!--
+      <div>{{ value }}</div> 
+    -->
+    <time-block [booking]="getBooking(value)"></time-block>
+    
+  </ng-template>
+
+  <style>
+    .station-btn {
+      height:60px;
+      width:300px;
+      background: transparent;
+    }
+  </style>
+
+  <ng-template  let-value="value"
+  let-row="row"
+  #stationTemplate>
+    <button class="sky-btn station-btn "
+    type="button">
+    <span>{{ value }}</span>
+    </button>
   </ng-template>
 
 </main>

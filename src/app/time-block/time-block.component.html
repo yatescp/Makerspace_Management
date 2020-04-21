@@ -2,11 +2,16 @@
   .booking-btn {
     background-color: lightblue;
     color: black;
+    height:60px;
+    width:140px;
   }
 
   .clear-btn {
-    background-color: lightblue;
-    color: black;
+    height:60px;
+    width:140px;
+    background: transparent;
+    border: none !important;
+    font-size:0;
   }
 </style>
 
@@ -21,18 +26,8 @@
   </button>
 </div>
 
-<sky-popover
-  popoverTitle="{{ booking.station }}"
-  #myPopover
->
-  <span>{{ booking.name }}</span>
-  <br>
-  <span>{{ booking.startTime }} - {{ booking.endTime }}</span>
-  <br>
-  <button><sky-icon icon="pencil" size="1x"></sky-icon></button>
-  <button><sky-icon icon="trash-o" size="1x"></sky-icon></button>
-</sky-popover>
-
 <ng-template #clearButton>
-  <button></button>
+  <button class="sky-btn clear-btn"
+  ></button>
 </ng-template>
+

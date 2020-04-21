@@ -41,7 +41,8 @@ export class HomeComponent implements OnInit {
   public number = this.date.getDate();
   public year = this.date.getFullYear();
   public theDate = new Date(this.year, this.month, this.number);
-
+  public entry: Booking;
+  
   public bookings: Booking[] = [
     {
      id :'1',
@@ -204,6 +205,31 @@ export class HomeComponent implements OnInit {
       this.timeBlocks[0]["_16"] = _booking.id.toString();
   }
   public openModal(id: string, date: string, start: string, end: string, name: string, station: string) {
+    let context = new SkyModalContext();
+    context.name = name;
+    context.date = date;
+    context.start = start;
+    context.end = end;
+    context.id = id;
+    context.station = station;
+    context.entry = new Booking(id, 'idk', date, start, end, name, station);
+    // placeholder values
+
+    let modalInstance = this.modal.open(SkyModalFormComponent, {
+
+      providers: [
+        {
+          provide: SkyModalContext, useValue: context}
+      ]
+    });
+
+    modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
+      console.log('Modal closed with reason: ' + result.reason + ' and data: ' + result.data);
+      this.entry = result.data;
+      console.log(this.entry);
+    });
+  }
+    public openModal(id: string, date: string, start: string, end: string, name: string, station: string) {
     let context = new SkyModalContext();
     context.name = name;
     context.date = date;

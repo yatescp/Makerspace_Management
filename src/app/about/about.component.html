@@ -9,12 +9,15 @@
 			This page provides contact information for members of our team.
 		</p>
 
+        <sky-alert alertType="warning">
+          <strong>Warning!</strong> Hello friends
+        </sky-alert>
+
         <ng-container *ngFor="let member of team">
-        <div class="avatar">
+
           <sky-avatar [name]="member.name"></sky-avatar>
-        </div>
-        <div class="info">
-          <sky-key-info [layout]="'vertical'">
+
+          <sky-key-info [layout]="'horizontal'">
             <sky-key-info-value>
               {{ member.name }}
             </sky-key-info-value>
@@ -24,9 +27,8 @@
               </a>
             </sky-key-info-label>
           </sky-key-info>
-        </div>
-        </ng-container>
 
+        </ng-container>
       </sky-column>
     </sky-row>
   </sky-fluid-grid>

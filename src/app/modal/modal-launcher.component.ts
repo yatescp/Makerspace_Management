@@ -21,7 +21,7 @@ export class SkyModalComponent {
     context.end = end;
     context.id = id;
     context.station = station;
-    context.entry = new Booking(id, 'idk', date, start, end, name, station)
+    context.entry = new Booking(id, 'idk', date, start, end, name, station);
     // placeholder values
 
     let modalInstance = this.modal.open(SkyModalFormComponent, {

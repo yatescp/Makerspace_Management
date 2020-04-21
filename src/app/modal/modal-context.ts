@@ -5,6 +5,6 @@ export class SkyModalContext {
     public start: string;
     public id: string;
     public station: string;
-    //public bookings: Array<Booking>;
+    // public bookings: Array<Booking>;
     public entry: Booking;
 }

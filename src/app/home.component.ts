@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
 
     //Hardcoded
     
-    booking = new Booking("1", "GOAT Laver cutter", '04/21/2020', "4:00 PM", "5:00 PM", "GOAT", "Laser cutter");
+    booking = new Booking("1", "GOAT Lazer cutter", '04/21/2020', "4:00 PM", "5:00 PM", "GOAT", "Laser cutter");
 
     this.addBookingToGrid(booking);
 
@@ -224,7 +224,10 @@ export class HomeComponent implements OnInit {
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
       console.log('Modal closed with reason: ' + result.reason + ' and data: ' + result.data);
       this.entry = result.data;
-      console.log(this.entry);
+      // tslint:disable-next-line: max-line-length
+      this.makeBooking(this.entry.id, this.entry.title, this.entry.date, this.entry.startTime, this.entry.endTime, this.entry.name, this.entry.station);
+      // test
+      // console.log(this.entry);
     });
   }
 }

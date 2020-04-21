@@ -210,15 +210,122 @@ export class HomeComponent implements OnInit {
     }
 
     //separate the hour, the time must be military time with 2 significant digits for the hours
-    let splitTime= booking.startTime.toString().split(":", 1)
+    let splitTime= booking.startTime.split(":", 1)
 
     //adds the underscore, this would be easier if typescript let us name properties with just numbers
     let slot = "_" + splitTime[0]
 
-    console.log("timeBlock from " + booking.startTime.toString() + " = " + slot);
+    console.log("timeBlock from " + booking.startTime + " = " + slot);
 
     //This works with string constants, so there must be a way to force it to work with string variables
-    this.timeBlocks[stationId][slot] = booking.id.toString();
+    //Edit: There isn't :(
+    this.timeBlocks[stationId][slot] = booking.id;
+
+    /*
+    //Ungoldy Switch because the above code wouldnt work
+    switch (slot) {
+      case "_00": {
+        this.timeBlocks[stationId]["_00"] = booking.id;
+        break;
+      }
+      case "_01": {
+        this.timeBlocks[stationId]["_01"] = booking.id;
+        break;
+      }
+      case "_02": {
+        this.timeBlocks[stationId]["_02"] = booking.id;
+        break;
+      }
+      case "_03": {
+        this.timeBlocks[stationId]["_03"] = booking.id;
+        break;
+      }
+      case "_04": {
+        this.timeBlocks[stationId]["_04"] = booking.id;
+        break;
+      }
+      case "_05": {
+        this.timeBlocks[stationId]["_05"] = booking.id;
+        break;
+      }
+      case "_06": {
+        this.timeBlocks[stationId]["_06"] = booking.id;
+        break;
+      }
+      case "_07": {
+        this.timeBlocks[stationId]["_07"] = booking.id;
+        break;
+      }
+      case "_08": {
+        this.timeBlocks[stationId]["_08"] = booking.id;
+        break;
+      }
+      case "_09": {
+        this.timeBlocks[stationId]["_09"] = booking.id;
+        break;
+      }
+      case "_10": {
+        this.timeBlocks[stationId]["_10"] = booking.id;
+        break;
+      }
+      case "_11": {
+        this.timeBlocks[stationId]["_11"] = booking.id;
+        break;
+      }
+      case "_12": {
+        this.timeBlocks[stationId]["_12"] = booking.id.;
+        break;
+      }
+      case "_13": {
+        this.timeBlocks[stationId]["_13"] = booking.id;
+        break;
+      }
+      case "_14": {
+        this.timeBlocks[stationId]["_14"] = booking.id;
+        break;
+      }
+      case "_15": {
+        this.timeBlocks[stationId]["_15"] = booking.id;
+        break;
+      }
+      case "_16": {
+        this.timeBlocks[stationId]["_16"] = booking.id;
+        break;
+      }
+      case "_17": {
+        this.timeBlocks[stationId]["_17"] = booking.id;
+        break;
+      }
+      case "_18": {
+        this.timeBlocks[stationId]["_18"] = booking.id;
+        break;
+      }
+      case "_19": {
+        this.timeBlocks[stationId]["_19"] = booking.id;
+        break;
+      }
+      case "_20": {
+        this.timeBlocks[stationId]["_20"] = booking.id;
+        break;
+      }
+      case "_21": {
+        this.timeBlocks[stationId]["_21"] = booking.id;
+        break;
+      }
+      case "_22": {
+        this.timeBlocks[stationId]["_22"] = booking.id;
+        break;
+      }
+      case "_23": {
+        this.timeBlocks[stationId]["_23"] = booking.id;
+        break;
+      }
+      default: {
+        this.timeBlocks[stationId]["_10"] = booking.id;
+        break;
+      }
+    }
+    */
   }
   public openModal(id: string, date: string, start: string, end: string, name: string, station: string) {
     let context = new SkyModalContext();

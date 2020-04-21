@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
   public number = this.date.getDate();
   public year = this.date.getFullYear();
   public theDate = new Date(this.year, this.month, this.number);
+  public entry: Booking;
   public data = [
     { id: '0', station: '' },
     { id: '1', station: 'Laser cutter' },
@@ -75,8 +76,6 @@ export class HomeComponent implements OnInit {
   public selectedRows: string;
 
   public gridController = new Subject<SkyGridMessage>();
-
-  public entry: Booking;
 
   constructor(private modal: SkyModalService) { }
 

@@ -1,3 +1,5 @@
+import { Booking } from '../models/booking';
+
 export class SkyModalContext {
     public name: string;
     public date: string;

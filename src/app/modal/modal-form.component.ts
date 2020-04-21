@@ -16,6 +16,8 @@ import { SkyModalInstance } from '@skyux/modals';
 
 import { SkyModalContext } from './modal-context';
 
+import { Booking } from '../models/booking';
+
 @Component({
   selector: 'sky-modal-form',
   templateUrl: './modal-form.component.html'
@@ -99,17 +101,6 @@ export class SkyModalFormComponent implements OnInit {
   }
   public save() {
     if (this.context.id && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
-      /**
-      this.context.entry = new Booking(
-        this.context.id,
-        this.date,
-        this.selectedStart,
-        this.selectedEnd,
-        this.selectedStation,
-        this.context.name
-      );
-      */
-      // this.context.bookings.push(entry);
       this.instance.close(this.context.entry);
     } else { }
   }

@@ -13,17 +13,20 @@ import {
 } from '@skyux/grids';
 
 import {
-  ListSortFieldSelectorModel
-} from '@skyux/list-builder-common';
-
-import {
   BehaviorSubject
 } from 'rxjs/BehaviorSubject';
 
 import {
   Subject
 } from 'rxjs/Subject';
+
 import { Booking } from './models/booking';
+
+import { SkyModalService, SkyModalCloseArgs } from '@skyux/modals';
+
+import { SkyModalContext } from './modal/modal-context';
+
+import { SkyModalFormComponent } from './modal/modal-form.component';
 
 @Component({
   selector: 'my-home',
@@ -38,9 +41,39 @@ export class HomeComponent implements OnInit {
   public number = this.date.getDate();
   public year = this.date.getFullYear();
   public theDate = new Date(this.year, this.month, this.number);
+  public entry: Booking;
+
+  public bookings: Booking[] = [
+    {
+      id: '1',
+      title: 'Soldering Booking',
+      date: '04/20/20',
+      startTime: '01:00',
+      endTime: '02:00',
+      name: 'Steven Draugel',
+      station: 'Soldering'
+    },
+    {
+      id: '2',
+      title: 'Laser Cutter Booking',
+      date: '04/20/20',
+      startTime: '12:00',
+      endTime: '01:00',
+      name: 'Steven Draugel',
+      station: 'Laser cutter'
+    },
+    {
+      id: '3',
+      title: 'Drill press',
+      date: '04/20/20',
+      startTime: '02:00',
+      endTime: '03:00',
+      name: 'Steven Draugel',
+      station: 'Drill press'
+    }
+  ];
 
   public data = [
-    { id: '0', station: '' },
     { id: '1', station: 'Laser cutter' },
     { id: '2', station: 'Creator Pro - 3D printer 1' },
     { id: '3', station: 'Creator Pro - 3D printer 2' },
@@ -49,21 +82,46 @@ export class HomeComponent implements OnInit {
     { id: '6', station: 'VR/AR' }
   ];
 
-  public bookings = [
+
+  //I know, its ugly, but it works each element is a station row, each number is a time column. This matrix defines the bookings that populate
+  //the grid, '0' means no booking, the getBooking method will return null if '0' is passed, which causes time-block to turn blank
+  public timeBlocks = [
+
+    //Laser Cutter id = '0'
     {
-      id: '0',
-      title: 'Laser Cutter Booking',
-      date: '04/20/20',
-      start: '12:00',
-      end: '01:00',
-      name: 'Steven Draugel',
-      station: 'Laser cutter'
+      id: '0', _00: '2', _01: '0', _02: '0', _03: '0', _04: '0', _05: '0', _06: '0', _07: '0', _08: '0', _09: '0', _10: '0', _11: '0',
+      _12: '0', _13: '0', _14: '0', _15: '0', _16: '0', _17: '0', _18: '0', _19: '0', _20: '0', _21: '0', _22: '0', _23: '0'
     },
-    { id: '1' },
-    { id: '2' },
-    { id: '3' },
-    { id: '4' },
-    { id: '5' }
+
+    //Creator Pro - 3D printer 1 = '1'
+    {
+      id: '1', _00: '0', _01: '0', _02: '0', _03: '0', _04: '0', _05: '0', _06: '0', _07: '0', _08: '0', _09: '0', _10: '0', _11: '0',
+      _12: '0', _13: '0', _14: '0', _15: '0', _16: '0', _17: '0', _18: '0', _19: '0', _20: '0', _21: '0', _22: '0', _23: '0'
+    },
+
+    //Creator Pro - 3D printer 2 = '2'
+    {
+      id: '2', _00: '0', _01: '0', _02: '0', _03: '0', _04: '0', _05: '0', _06: '0', _07: '0', _08: '0', _09: '0', _10: '0', _11: '0',
+      _12: '0', _13: '0', _14: '0', _15: '0', _16: '0', _17: '0', _18: '0', _19: '0', _20: '0', _21: '0', _22: '0', _23: '0'
+    },
+
+    //Soldering = '3'
+    {
+      id: '3', _00: '0', _01: '1', _02: '0', _03: '0', _04: '0', _05: '0', _06: '0', _07: '0', _08: '0', _09: '0', _10: '0', _11: '0',
+      _12: '0', _13: '0', _14: '0', _15: '0', _16: '0', _17: '0', _18: '0', _19: '0', _20: '0', _21: '0', _22: '0', _23: '0'
+    },
+
+    //Drill press = '4'
+    {
+      id: '4', _00: '0', _01: '0', _02: '3', _03: '0', _04: '0', _05: '0', _06: '0', _07: '0', _08: '0', _09: '0', _10: '0', _11: '0',
+      _12: '0', _13: '0', _14: '0', _15: '0', _16: '0', _17: '0', _18: '0', _19: '0', _20: '0', _21: '0', _22: '0', _23: '0'
+    },
+
+    //VR/AR = '5'
+    {
+      id: '5', _00: '0', _01: '0', _02: '0', _03: '0', _04: '0', _05: '0', _06: '0', _07: '0', _08: '0', _09: '0', _10: '0', _11: '0',
+      _12: '0', _13: '0', _14: '0', _15: '0', _16: '0', _17: '0', _18: '0', _19: '0', _20: '0', _21: '0', _22: '0', _23: '0'
+    }
   ];
 
   public dataForMultiselect = this.data.slice(0);
@@ -73,6 +131,8 @@ export class HomeComponent implements OnInit {
   public selectedRows: string;
 
   public gridController = new Subject<SkyGridMessage>();
+
+  constructor(private modal: SkyModalService) { }
 
   public ngOnInit() {
     // // Simulate async request:
@@ -93,58 +153,82 @@ export class HomeComponent implements OnInit {
     this.theDate = new Date(this.year, this.month, this.number);
   }
 
-  public onSortChangeForGrid(activeSort: ListSortFieldSelectorModel) {
-    this.data = this.sortGridData(activeSort, this.data);
-  }
-
-  public onSortChangeForMultiselectGrid(activeSort: ListSortFieldSelectorModel) {
-    this.dataForMultiselect = this.sortGridData(activeSort, this.dataForMultiselect);
-  }
-
   public onMultiselectSelectionChange(value: SkyGridSelectedRowsModelChange) {
     this.selectedRows = value.selectedRowIds.toString();
   }
 
-  public getBooking(id: string, row: any): Booking {
-    console.log(id);
-    return new Booking(
-      '0',
-      'Laser Cutter Booking',
-      '04/20/20',
-      '12:00',
-      '01:00',
-      'Steven Draugel',
-      'Laser cutter'
-    );
+  public getBooking(id: string): Booking {
+
+
+
+    if (id == '0') {
+      return null;
+    }
+
+    for (var i = 0; i < this.bookings.length; i++) {
+      if (this.bookings[i].id == id) {
+        return this.bookings[i];
+      }
+    }
+
+    return null;
   }
 
-  private sortGridData(activeSort: ListSortFieldSelectorModel, data: any[]) {
-    const sortField = activeSort.fieldSelector;
-    const descending = activeSort.descending;
+  public makeBooking(_id: string, _title: string, _data: string, _startTime: string, _endTime: string, _name: string, _station: string) {
 
-    return data.sort((a: any, b: any) => {
-      let value1 = a[sortField];
-      let value2 = b[sortField];
+    //make new booking
+    let booking = new Booking(_id, _title, _data, _startTime, _endTime, _name, _station);
 
-      if (value1 && typeof value1 === 'string') {
-        value1 = value1.toLowerCase();
-      }
+    //id will come from database, so for now it can be hardcoded or generated by the index
+    if (booking.id === '-1') {
+      booking.id = this.bookings.length.toString();
+    }
 
-      if (value2 && typeof value2 === 'string') {
-        value2 = value2.toLowerCase();
-      }
 
-      if (value1 === value2) {
-        return 0;
-      }
+    this.bookings[this.bookings.length] = booking;
 
-      let result = value1 > value2 ? 1 : -1;
+    //Hardcoded
 
-      if (descending) {
-        result *= -1;
-      }
+    booking = new Booking("1", "GOAT Lazer cutter", '04/21/2020', "4:00 PM", "5:00 PM", "GOAT", "Laser cutter");
 
-      return result;
-    }).slice();
+    this.addBookingToGrid(booking);
+
+  }
+
+  public addBookingToGrid(_booking: Booking) {
+
+    //This is currently hard coded
+    //'1','04/21/2020','4:00 PM','5:00 PM', 'GOAT', 'Laser Cutter'
+
+    this.timeBlocks[0]["_16"] = _booking.id.toString();
+  }
+  public openModal(id: string, date: string, start: string, end: string, name: string, station: string) {
+    let context = new SkyModalContext();
+    context.name = name;
+    context.date = date;
+    context.start = start;
+    context.end = end;
+    context.id = id;
+    context.station = station;
+    context.entry = new Booking(id, 'idk', date, start, end, name, station);
+    // placeholder values
+
+    let modalInstance = this.modal.open(SkyModalFormComponent, {
+
+      providers: [
+        {
+          provide: SkyModalContext, useValue: context
+        }
+      ]
+    });
+
+    modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
+      console.log('Modal closed with reason: ' + result.reason + ' and data: ' + result.data);
+      this.entry = result.data;
+      // tslint:disable-next-line: max-line-length
+      this.makeBooking(this.entry.id, this.entry.title, this.entry.date, this.entry.startTime, this.entry.endTime, this.entry.name, this.entry.station);
+      // test
+      // console.log(this.entry);
+    });
   }
 }

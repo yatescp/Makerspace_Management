@@ -9,9 +9,9 @@
 
   <div class="columns">
     <div class="button1">
-      <sky-modal-launcher>
-        Reserve station
-      </sky-modal-launcher>
+      <button type="button" class="sky-btn sky-btn-primary" (click)="openModal('1','04/21/2020','16:00','17:00', 'GOAT', 'Laser Cutter')">
+        Reserve Station
+      </button>
     </div>
     <div class="datepicker">
       <sky-datepicker>
@@ -31,7 +31,6 @@
       </a>
     </div>
   </div>
-
   <div class="toolbar">
     <sky-toolbar>
       <sky-toolbar-item>

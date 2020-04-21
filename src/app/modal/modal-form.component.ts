@@ -10,9 +10,13 @@ import {
   Validators
 } from '@angular/forms';
 
+// const moment = require('moment');
+
 import { SkyModalInstance } from '@skyux/modals';
 
 import { SkyModalContext } from './modal-context';
+
+import { Booking } from '../models/booking';
 
 @Component({
   selector: 'sky-modal-form',
@@ -23,11 +27,42 @@ export class SkyModalFormComponent implements OnInit {
   public startTimeForm: FormGroup;
   public endTimeForm: FormGroup;
   public reactiveForm: FormGroup;
-  public disabled = false;
   public dateFormat = 'MM/DD/YYYY';
+  public selectedStart: any;
+  public selectedEnd: any;
+  public selectedStation: any;
+  public selectedDate: any;
+  // public date = this.context.date;
+  // public todayDate = new moment(this.date);
+  // public timeNow = this.todayDate.format('HH:mm');
   public maxDate: Date;
   public minDate: Date;
-  public selectedDate = '04/17/2020';
+  public time = [
+    { id: '12A', time: '12:00AM' },
+    { id: '1A', time: '1:00AM' },
+    { id: '2A', time: '2:00AM' },
+    { id: '3A', time: '3:00AM' },
+    { id: '4A', time: '4:00AM' },
+    { id: '5A', time: '5:00AM' },
+    { id: '6A', time: '6:00AM' },
+    { id: '7A', time: '7:00AM' },
+    { id: '8A', time: '8:00AM' },
+    { id: '9A', time: '9:00AM' },
+    { id: '10A', time: '10:00AM' },
+    { id: '11A', time: '11:00AM' },
+    { id: '12P', time: '12:00PM' },
+    { id: '1p', time: '1:00PM' },
+    { id: '2P', time: '2:00PM' },
+    { id: '3P', time: '3:00PM' },
+    { id: '4P', time: '4:00PM' },
+    { id: '5P', time: '5:00PM' },
+    { id: '6P', time: '6:00PM' },
+    { id: '7P', time: '7:00PM' },
+    { id: '8P', time: '8:00PM' },
+    { id: '9P', time: '9:00PM' },
+    { id: '10P', time: '10:00PM' },
+    { id: '11P', time: '11:00PM' }
+  ];
 
   public get startTime(): FormControl {
     return this.startTimeForm.get('time') as FormControl;
@@ -47,7 +82,7 @@ export class SkyModalFormComponent implements OnInit {
       time: new FormControl('', Validators.required)
     });
     this.reactiveForm = this.formBuilder.group({
-      selectedDate: new FormControl(this.selectedDate, Validators.required)
+      selectedDate: new FormControl('', Validators.required)
     });
   }
   public formatDateForDisplay(date: Date): string {
@@ -60,5 +95,13 @@ export class SkyModalFormComponent implements OnInit {
   public clearSelectedTimes() {
     this.startTime.setValue(undefined);
     this.endTime.setValue(undefined);
+    this.selectedStart = undefined;
+    this.selectedEnd = undefined;
+    this.selectedStation = undefined;
+  }
+  public save() {
+    if (this.context.id && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
+      this.instance.close(this.context.entry);
+    } else { }
   }
 }

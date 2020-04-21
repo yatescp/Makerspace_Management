@@ -15,13 +15,14 @@ export class SkyModalComponent {
 
   public openModal() {
     let context = new SkyModalContext();
-    context.value1 = 'Default text';
+    context.name = 'GOAT';
+    context.id = '1'; // placeholder values
 
     let modalInstance = this.modal.open(SkyModalFormComponent, {
+
       providers: [
         {
-          provide: SkyModalContext, useValue: context
-        }
+          provide: SkyModalContext, useValue: context}
       ]
     });
 

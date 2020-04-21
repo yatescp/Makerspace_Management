@@ -1,7 +1,6 @@
 import {
   Component,
-  OnInit,
-  Input
+  OnInit
 } from '@angular/core';
 
 import {
@@ -101,7 +100,7 @@ export class SkyModalFormComponent implements OnInit {
     this.selectedStation = undefined;
   }
   public save() {
-    if (this.context.id && this.selectedDate && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
+    if (this.context.id && this.selectedStart && this.selectedEnd && this.selectedStation && this.context.name) {
       this.instance.close(this.context.entry);
     } else { }
   }

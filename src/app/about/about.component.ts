@@ -4,21 +4,22 @@ import {
 
 @Component({
   selector: 'my-about',
-  templateUrl: './about.component.html'
+  templateUrl: './about.component.html',
+  styleUrls: ['./about-component.scss'],
 })
 export class AboutComponent {
   public team: { name: string; email: string; }[] = [
     {
-      name: 'Robert Hernandez',
-      email: 'rh@edu.org'
+      name: 'Michael O\'cain',
+      email: 'ocainmm@g.cofc.edu'
     },
     {
-      name: 'Samantha Jones',
-      email: 'sam@jones.com'
+      name: 'Marianna Sawyer',
+      email: 'sawyermk@g.cofc.edu'
     },
     {
-      name: 'Michael Jordan',
-      email: 'michael@jordon.net'
+      name: 'Connor Yates',
+      email: 'yatescp@g.cofc.edu'
     }
   ];
 }
